@@ -19,7 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('condition');
             $table->string('category');
-            $table->string('image');
+            $table->string('cover_image');
+            $table->string('uniqueId');
             $table->longText('description');
             $table->string('starting_date')->nullable();
             $table->string('ending_date')->nullable();

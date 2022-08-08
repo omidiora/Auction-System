@@ -77,11 +77,11 @@ class RegisterController extends Controller
             'mobile' => $data['mobile'],
 
             'dob' => isset($data['dob']) ? $data['dob'] : ' ',
-            'address' => $data['address'],
-            'bank_name' => $data['bank_name'],
-            'bank_no' => $data['bank_no'],
-            'delivery_address' => $data['delivery_address'],
-            'picture' => $data['picture'],
+            'address' =>  isset($data['address']) ? $data['address'] : ' ',
+            'bank_name' => isset($data['bank_name']) ? $data['bank_name'] : ' ',
+            'bank_no' => isset($data['bank_no']) ? $data['bank_no']  : ' ',
+            'delivery_address' => isset($data['delivery_address']) ?  $data['delivery_address'] : ' ',
+            'picture' =>  isset($data['picture']) ? $data['picture'] : ' ',
 
         ]);
     }

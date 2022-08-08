@@ -7,16 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>multiingual Online auction system</title>
-
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/nice-select.css">
-    <link rel="stylesheet" href="assets/css/owl.min.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/flaticon.css">
-    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href='assets/css/bootstrap.min.css'>
+    <link rel="stylesheet" href='assets/css/all.min.css'>
+    <link rel="stylesheet" href='assets/css/animate.css'>
+    <link rel="stylesheet" href='assets/css/nice-select.css'>
+    <link rel="stylesheet" href='assets/css/owl.min.css'>
+    <link rel="stylesheet" href='assets/css/magnific-popup.css'>
+    <link rel="stylesheet" href='assets/css/flaticon.css'>
+    <link rel="stylesheet" href='assets/css/jquery-ui.min.css'>
+    <link rel="stylesheet" href='assets/css/main.css'>
 
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
     <style>
@@ -76,7 +75,7 @@
                     </div> -->
                     <ul class="menu ml-auto">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="index.html">Home</a>
                         </li>
                         <li>
                             <a href="bidder/product.html">Auction</a>
@@ -250,31 +249,31 @@
                 </div>
                 <div class="m--15">
                     <div class="browse-slider owl-theme owl-carousel">
-                        <a href="bidder/view-all.html" class="browse-item">
+                        <a  href="{{route('categoryItem', ['id' => 3])}}" class="browse-item">
                             <img src="assets/images/auction/09.png" alt="auction">
                             <span class="info">Books</span>
                         </a>
-                        <a href="bidder/view-all.html" class="browse-item">
+                        <a href="{{route('categoryItem', ['id' => 6])}}" class="browse-item">
                             <img src="assets/images/auction/02.png" alt="auction">
                             <span class="info">Jewelries</span>
                         </a>
-                        <a href="bidder/view-all.html" class="browse-item">
+                        <a href="{{route('categoryItem', ['id' => 2])}}" class="browse-item">
                             <img src="assets/images/auction/03.png" alt="auction">
                             <span class="info">Watches</span>
                         </a>
-                        <a href="bidder/view-all.html" class="browse-item">
+                        <a href="{{route('categoryItem', ['id' => 7])}}" class="browse-item">
                             <img src="assets/images/auction/06.png" alt="auction">
                             <span class="info">Accesories</span>
                         </a>
-                        <a href="bidder/view-all.html" class="browse-item">
+                        <a href="{{route('categoryItem', ['id' => 1])}}" class="browse-item">
                             <img src="assets/images/auction/08.jpg" alt="auction">
                             <span class="info">Clothes</span>
                         </a>
-                        <a href="bidder/view-all.html" class="browse-item">
+                        <a href="{{route('categoryItem', ['id' => 4])}}" class="browse-item">
                             <img src="assets/images/auction/05.png" alt="auction">
                             <span class="info">Bags</span>
                         </a>
-                        <a href="bidder/view-all.html" class="browse-item">
+                        <a href="{{route('categoryItem', ['id' => 5])}}" class="browse-item">
                             <img src="assets/images/auction/04.png" alt="auction">
                             <span class="info">Shoes</span>
                         </a>
@@ -302,9 +301,11 @@
                             <p>Affordable Books are available</p>
                         </div>
                     </div>
-                    <a href="bidder/view-all.html" class="normal-button">View All</a>
+                    <a href="{{route("all")}}" class="normal-button">View All</a>
                 </div>
                 <div class="row justify-content-center mb-30-none">
+                   
+                    @foreach ($showThreeBookItem as $item)
                     <div class="col-sm-10 col-md-6 col-lg-4">
                         <div class="auction-item-2">
                             <div class="auction-thumb">
@@ -314,7 +315,7 @@
                             </div>
                             <div class="auction-content">
                                 <h6 class="title">
-                                    <a href="bidder/product-details.html">The Tempest, 2018</a>
+                                    <a href="bidder/product-details.html">{{$item->name}}</a>
                                 </h6>
                                 <div class="bid-area">
                                     <div class="bid-amount" style="width: 100%;">
@@ -323,90 +324,25 @@
                                         </div>
                                         <div class="amount-content">
                                             <div class="current">Price</div>
-                                            <div class="amount">#4000.00</div>
+                                            <div class="amount">&#x20A6;{{$item->price}}</div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="countdown-area">
-                                    <div class="countdown">
-                                        <div id="bid_counter26"></div>
-                                    </div>
-                                    <span class="total-bids">30 Bids</span>
-                                </div>
-                                <div class="text-center">
-                                    <a href="bidder/product-details.html" class="custom-button">Submit a bid</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-10 col-md-6 col-lg-4">
-                        <div class="auction-item-2">
-                            <div class="auction-thumb">
-                                <a href="bidder/product-details.html"><img src="assets/images/auction/book/09.png" alt="car"></a>
-                                <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                                <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
-                            </div>
-                            <div class="auction-content">
-                                <h6 class="title">
-                                    <a href="bidder/product-details.html">The Tempest, 2018</a>
-                                </h6>
-                                <div class="bid-area">
-                                    <div class="bid-amount" style="width: 100%;">
-                                        <div class="icon">
-                                            <i class="flaticon-auction"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Price</div>
-                                            <div class="amount">#4000.00</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="countdown-area">
-                                    <div class="countdown">
+                                    {{-- <div class="countdown">
                                         <div id="bid_counter27"></div>
-                                    </div>
-                                    <span class="total-bids">30 Bids</span>
+                                    </div> --}}
+                                    {{-- <span class="total-bids">30 Bids</span> --}}
                                 </div>
                                 <div class="text-center">
-                                    <a href="bidder/product-details.html" class="custom-button">Submit a bid</a>
+                                    <a href="product/bid/{{$item->id}}" class="custom-button">Submit a bid</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-10 col-md-6 col-lg-4">
-                        <div class="auction-item-2">
-                            <div class="auction-thumb">
-                                <a href="bidder/product-details.html"><img src="assets/images/auction/book/09.png" alt="car"></a>
-                                <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                                <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
-                            </div>
-                            <div class="auction-content">
-                                <h6 class="title">
-                                    <a href="bidder/product-details.html">The Tempest, 2018</a>
-                                </h6>
-                                <div class="bid-area">
-                                    <div class="bid-amount" style="width: 100%;">
-                                        <div class="icon">
-                                            <i class="flaticon-auction"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Price</div>
-                                            <div class="amount">#4000.00</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="countdown-area">
-                                    <div class="countdown">
-                                        <div id="bid_counter28"></div>
-                                    </div>
-                                    <span class="total-bids">30 Bids</span>
-                                </div>
-                                <div class="text-center">
-                                    <a href="bidder/product-details.html" class="custom-button">Submit a bid</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        
+                    @endforeach
+                    
                 </div>
             </div>
         </section>
@@ -428,19 +364,20 @@
                         <p>Online jewelry auctions where you can bid for your favorites jewelry</p>
                     </div>
                 </div>
-                <a href="bidder/view-all.html" class="normal-button">View All</a>
+               
             </div>
             <div class="row justify-content-center mb-30-none">
+                @foreach ($showJeweleryItem as $item)
                 <div class="col-sm-10 col-md-6 col-lg-4">
                     <div class="auction-item-2">
                         <div class="auction-thumb">
-                            <a href="bidder/product-details.html"><img src="assets/images/auction/jewelry/auction-1.jpg" alt="jewelry"></a>
+                            <a href="bidder/product-details.html"><img src="assets/images/auction/book/09.png" alt="car"></a>
                             <a href="#0" class="rating"><i class="far fa-star"></i></a>
                             <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
                         </div>
                         <div class="auction-content">
                             <h6 class="title">
-                                <a href="bidder/product-details.html">Gold Ring With Clear Stones</a>
+                                <a href="bidder/product-details.html">{{$item->name}}</a>
                             </h6>
                             <div class="bid-area">
                                 <div class="bid-amount" style="width: 100%;">
@@ -449,90 +386,24 @@
                                     </div>
                                     <div class="amount-content">
                                         <div class="current">Price</div>
-                                        <div class="amount">#876.00</div>
+                                        <div class="amount">&#x20A6;{{$item->price}}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="countdown-area">
-                                <div class="countdown">
-                                    <div id="bid_counter23"></div>
-                                </div>
-                                <span class="total-bids">30 Bids</span>
+                                {{-- <div class="countdown">
+                                    <div id="bid_counter27"></div>
+                                </div> --}}
+                                {{-- <span class="total-bids">30 Bids</span> --}}
                             </div>
                             <div class="text-center">
-                                <a href="bidder/product-details.html" class="custom-button">Submit a bid</a>
+                                <a href="product/bid/{{$item->id}}" class="custom-button">Submit a bid</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-10 col-md-6 col-lg-4">
-                    <div class="auction-item-2">
-                        <div class="auction-thumb">
-                            <a href="bidder/product-details.html"><img src="assets/images/auction/jewelry/auction-1.jpg" alt="jewelry"></a>
-                            <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                            <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
-                        </div>
-                        <div class="auction-content">
-                            <h6 class="title">
-                                <a href="bidder/product-details.html">Gold Ring With Clear Stones</a>
-                            </h6>
-                            <div class="bid-area">
-                                <div class="bid-amount" style="width: 100%;">
-                                    <div class="icon">
-                                        <i class="flaticon-auction"></i>
-                                    </div>
-                                    <div class="amount-content">
-                                        <div class="current">Price</div>
-                                        <div class="amount">#876.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="countdown-area">
-                                <div class="countdown">
-                                    <div id="bid_counter24"></div>
-                                </div>
-                                <span class="total-bids">30 Bids</span>
-                            </div>
-                            <div class="text-center">
-                                <a href="bidder/product-details.html" class="custom-button">Submit a bid</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-10 col-md-6 col-lg-4">
-                    <div class="auction-item-2">
-                        <div class="auction-thumb">
-                            <a href="bidder/product-details.html"><img src="assets/images/auction/jewelry/auction-1.jpg" alt="jewelry"></a>
-                            <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                            <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
-                        </div>
-                        <div class="auction-content">
-                            <h6 class="title">
-                                <a href="bidder/product-details.html">Gold Ring With Clear Stones</a>
-                            </h6>
-                            <div class="bid-area">
-                                <div class="bid-amount" style="width: 100%;">
-                                    <div class="icon">
-                                        <i class="flaticon-auction"></i>
-                                    </div>
-                                    <div class="amount-content">
-                                        <div class="current">Price</div>
-                                        <div class="amount">#876.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="countdown-area">
-                                <div class="countdown">
-                                    <div id="bid_counter25"></div>
-                                </div>
-                                <span class="total-bids">30 Bids</span>
-                            </div>
-                            <div class="text-center">
-                                <a href="bidder/product-details.html" class="custom-button">Submit a bid</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    
+                @endforeach
             </div>
         </div>
     </section>
@@ -567,19 +438,20 @@
                         <p>Shop for men & women designer brand watches</p>
                     </div>
                 </div>
-                <a href="bidder/view-all.html" class="normal-button">View All</a>
+               
             </div>
             <div class="row justify-content-center mb-30-none">
+                @foreach ($showThreeWatchItem as $item)
                 <div class="col-sm-10 col-md-6 col-lg-4">
                     <div class="auction-item-2">
                         <div class="auction-thumb">
-                            <a href="bidder/product-details.html"><img src="assets/images/auction/watches/auction-1.jpg" alt="watches"></a>
+                            <a href="bidder/product-details.html"><img src="assets/images/auction/book/09.png" alt="car"></a>
                             <a href="#0" class="rating"><i class="far fa-star"></i></a>
                             <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
                         </div>
                         <div class="auction-content">
                             <h6 class="title">
-                                <a href="bidder/product-details.html">Vintage Rolex</a>
+                                <a href="bidder/product-details.html">{{$item->name}}</a>
                             </h6>
                             <div class="bid-area">
                                 <div class="bid-amount" style="width: 100%;">
@@ -588,90 +460,24 @@
                                     </div>
                                     <div class="amount-content">
                                         <div class="current">Price</div>
-                                        <div class="amount">#10,000.00</div>
+                                        <div class="amount">&#x20A6;{{$item->price}}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="countdown-area">
-                                <div class="countdown">
-                                    <div id="bid_counter20"></div>
-                                </div>
-                                <span class="total-bids">30 Bids</span>
+                                {{-- <div class="countdown">
+                                    <div id="bid_counter27"></div>
+                                </div> --}}
+                                {{-- <span class="total-bids">30 Bids</span> --}}
                             </div>
                             <div class="text-center">
-                                <a href="bidder/product-details.html" class="custom-button">Submit a bid</a>
+                                <a href="product/bid/{{$item->id}}" class="custom-button">Submit a bid</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-10 col-md-6 col-lg-4">
-                    <div class="auction-item-2">
-                        <div class="auction-thumb">
-                            <a href="bidder/product-details.html"><img src="assets/images/auction/watches/auction-1.jpg" alt="watches"></a>
-                            <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                            <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
-                        </div>
-                        <div class="auction-content">
-                            <h6 class="title">
-                                <a href="bidder/product-details.html">Vintage Rolex</a>
-                            </h6>
-                            <div class="bid-area">
-                                <div class="bid-amount" style="width: 100%;">
-                                    <div class="icon">
-                                        <i class="flaticon-auction"></i>
-                                    </div>
-                                    <div class="amount-content">
-                                        <div class="current">Price</div>
-                                        <div class="amount">#10,000.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="countdown-area">
-                                <div class="countdown">
-                                    <div id="bid_counter21"></div>
-                                </div>
-                                <span class="total-bids">30 Bids</span>
-                            </div>
-                            <div class="text-center">
-                                <a href="bidder/product-details.html" class="custom-button">Submit a bid</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-10 col-md-6 col-lg-4">
-                    <div class="auction-item-2">
-                        <div class="auction-thumb">
-                            <a href="bidder/product-details.html"><img src="assets/images/auction/watches/auction-1.jpg" alt="watches"></a>
-                            <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                            <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
-                        </div>
-                        <div class="auction-content">
-                            <h6 class="title">
-                                <a href="bidder/product-details.html">Vintage Rolex</a>
-                            </h6>
-                            <div class="bid-area">
-                                <div class="bid-amount" style="width: 100%;">
-                                    <div class="icon">
-                                        <i class="flaticon-auction"></i>
-                                    </div>
-                                    <div class="amount-content">
-                                        <div class="current">Price</div>
-                                        <div class="amount">#10,000.00</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="countdown-area">
-                                <div class="countdown">
-                                    <div id="bid_counter22"></div>
-                                </div>
-                                <span class="total-bids">30 Bids</span>
-                            </div>
-                            <div class="text-center">
-                                <a href="bidder/product-details.html" class="custom-button">Submit a bid</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    
+                @endforeach
             </div>
         </div>
     </section>

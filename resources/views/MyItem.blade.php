@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Sbidu - Bid And Auction HTML Template</title>
+    <title>Multilingual Online Auction System</title>
 
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/all.min.css">
@@ -19,6 +19,11 @@
     <link rel="stylesheet" href="../assets/css/main.css">
 
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <style>
+        .auction-item-2 .auction-content .bid-area .bid-amount::before {
+            background: inherit;
+        }
+    </style>
 </head>
 
 <body>
@@ -71,7 +76,7 @@
                     </div> -->
                     <ul class="menu ml-auto">
                         <li>
-                            <a  href="/">Home</a>
+                            <a href="../index.html">Home</a>
                         </li>
                         <li>
                             <a href="../bidder/product.html">Auction</a>
@@ -83,7 +88,7 @@
                             <a href="seller-dashboard.html">Dashboard</a>
                             <ul class="submenu">
                                 <li>
-                                    <a href="{{route("personalProfile")}}">Personal Profile</a>
+                                    <a href="profile.html">Personal Profile</a>
                                 </li>
                                 <li>
                                     <a href="my-bid.html">My Items</a>
@@ -225,7 +230,7 @@
                             </div>
                             <div class="content">
                                 <h5 class="title"><a href="#0">Percy Reed</a></h5>
-                                <span class="username"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f993969197b99e94989095d79a9694">[email&#160;protected]</a></span>
+                                <span class="username"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="254f4a4d4b654248444c490b464a48">[email&#160;protected]</a></span>
                             </div>
                         </div>
                         <ul class="dashboard-menu">
@@ -233,10 +238,10 @@
                                 <a href="seller-dashboard.html"><i class="flaticon-dashboard"></i>Dashboard</a>
                             </li>
                             <li>
-                                <a href="{{route("personalProfile")}}" class="active"><i class="flaticon-settings"></i>Personal Profile </a>
+                                <a href="profile.html"><i class="flaticon-settings"></i>Personal Profile </a>
                             </li>
                             <li>
-                                <a href="my-bid.html"><i class="flaticon-auction"></i>My Items</a>
+                                <a href="my-bid.html" class="active"><i class="flaticon-auction"></i>My Items</a>
                             </li>
                             <li>
                                 <a href="winning-bids.html"><i class="flaticon-best-seller"></i>Sold Items</a>
@@ -254,108 +259,90 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="dash-pro-item mb-30 dashboard-widget">
-                               
-                                    
-                               
-                                <div class="header">
-                                    <h4 class="title">Personal Details</h4>
-                                    <span class="edit"><i class="flaticon-edit"></i> Edit</span>
-                                </div>
-                              
-                                <ul class="dash-pro-body">
-                                    <li>
-                                        <div class="info-name">Name</div>
-                                        <div class="info-value">{{$users->name}}</div>
-                                    </li>
-                                    <li>
-                                        <div class="info-name">Department</div>
-                                        <div class="info-value">Computer Science</div>
-                                    </li>
-                                    <li>
-                                        <div class="info-name">Matric No.</div>
-                                        <div class="info-value">{{$users->matric_no}}</div>
-                                    </li>
-                                    <li>
-                                        <div class="info-name">Date of Birth</div>
-                                        <div class="info-value">{{$users->dob}}</div>
-                                    </li>
-                                    <li>
-                                        <div class="info-name">Address</div>
-                                        <div class="info-value">{{$users->address}}</div>
-                                    </li>
-                                    <li>
-                                        <div class="info-name">Email</div>
-                                        <div class="info-value"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c3d303e392e286f68651c3b313d3530723f3331">[email&#160;protected]</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="info-name">Mobile</div>
-                                        <div class="info-value">{{$users->mobile}}</div>
-                                    </li>
-                                </ul>
-                            </div>
+                    <div class="dash-bid-item dashboard-widget mb-40-60">
+                        <div class="header">
+                            <h4 class="title">My Items</h4>
+                            <!-- <span class="notify"><i class="flaticon-alarm"></i> Manage Notifications</span> -->
                         </div>
-                        <div class="col-12">
-                            <div class="dash-pro-item mb-30 dashboard-widget">
-                                <div class="header">
-                                    <h4 class="title">Account Settings</h4>
-                                    <!-- <span class="edit"><i class="flaticon-edit"></i> Edit</span> -->
+                        <!-- <ul class="button-area nav nav-tabs">
+                            <li>
+                                <a href="#upcoming" data-toggle="tab" class="custom-button active">Upcoming</a>
+                            </li>
+                        </ul> -->
+                    </div>
+                    <div class="tab-content">
+                        <!-- <div class="tab-pane fade show active" id="upcoming"> -->
+                        <div class="row mb-30-none justify-content-center">
+                            @foreach ($products as $item)
+                            <div class="col-sm-10 col-md-6">
+                          
+                            <div class="auction-item-2">
+                                <div class="auction-thumb">
+                                    <a href="selling-item-details.html"><img src="../assets/images/auction/car/auction-1.jpg" alt="car"></a>
+                                    <a href="#0" class="rating"><i class="far fa-star"></i></a>
+                                    <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
                                 </div>
-                                <ul class="dash-pro-body">
-                                    <!-- <li>
-                                        <div class="info-name">Language</div>
-                                        <div class="info-value">English (United States)</div>
-                                    </li>
-                                    <li>
-                                        <div class="info-name">Time Zone</div>
-                                        <div class="info-value">(GMT-06:00) Central America</div>
-                                    </li> -->
-                                    <li>
-                                        <div class="info-name">Status</div>
-                                        <div class="info-value"><i class="flaticon-check text-success"></i> Active</div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="dash-pro-item mb-30 dashboard-widget">
-                                <div class="header">
-                                    <h4 class="title">Delivery Address</h4>
-                                    <span class="edit"><i class="flaticon-edit"></i> Edit</span>
+                                <div class="auction-content">
+                                    <h6 class="title">
+                                        <a href="#0">{{$item->name}}</a>
+                                    </h6>
+                                    <div class="bid-area">
+                                        <div class="bid-amount" style="width: 100%;">
+                                            <div class="icon">
+                                                <i class="flaticon-auction"></i>
+                                            </div>
+                                            <div class="amount-content">
+                                                <div class="current">Amount</div>
+                                                <div class="amount">&#x20A6;{{$item->price}}</div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="bid-amount">
+                                                <div class="icon">
+                                                    <i class="flaticon-money"></i>
+                                                </div>
+                                                <div class="amount-content">
+                                                    <div class="current">Buy Now</div>
+                                                    <div class="amount">$5,00.00</div>
+                                                </div>
+                                            </div> -->
+                                    </div>
+                                    {{-- <div class="countdown-area">
+                                        <div class="countdown">
+                                            <div id="bid_counter26"></div>
+                                        </div>
+                                        <span class="total-bids">30 Bids</span>
+                                    </div> --}}
+                                    {{-- <div class="text-center">
+                                        <a href="selling-item-details.html" class="custom-button">View details</a>
+                                    </div> --}}
                                 </div>
-                                <ul class="dash-pro-body">
-                                    <li>
-                                        <div class="info-name">Address</div>
-                                        <div class="info-value">{{$users->address}}</div>
-                                    </li>
-                                </ul>
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="dash-pro-item mb-30 dashboard-widget">
-                                <div class="header">
-                                    <h4 class="title">Bank Details</h4>
-                                    <span class="edit"><i class="flaticon-edit"></i> Edit</span>
-                                </div>
-                                <ul class="dash-pro-body">
-                                    <li>
-                                        <div class="info-name" style="width: 145px;">Bank Name</div>
-                                        <div class="info-value" style="width: calc(100% - 145px);">{{$users->bank_name}}</div>
-                                    </li>
-                                    <li>
-                                        <div class="info-name" style="width: 145px;">Account Number</div>
-                                        <div class="info-value" style="width: calc(100% - 145px);">{{$users->bank_no}}</div>
-                                    </li>
-                                    <li>
-                                        <div class="info-name" style="width: 145px;">Account Name</div>
-                                        <div class="info-value" style="width: calc(100% - 145px);">Ademola Toheeb</div>
-                                    </li>
-                                </ul>
+                                
+                         
+                                
                             </div>
+                            @endforeach
                         </div>
-                       
+
+                            {{-- <ul class="pagination">
+                                <li>
+                                    <a href="#0"><i class="flaticon-left-arrow"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#0">1</a>
+                                </li>
+                                <li>
+                                    <a href="#0" class="active">2</a>
+                                </li>
+                                <li>
+                                    <a href="#0">3</a>
+                                </li>
+                                <li>
+                                    <a href="#0"><i class="flaticon-right-arrow"></i></a>
+                                </li>
+                            </ul> --}}
+                        </div>
+                        <!-- </div> -->
                     </div>
                 </div>
             </div>
@@ -447,7 +434,7 @@
                                     <a href="#0">Auction</a>
                                 </li>
                                 <li>
-                                    <a href="#0">Sell</a>
+                                    <a href="sell-register.html">Sell</a>
                                 </li>
                                 <li>
                                     <a href="#0">Help</a>

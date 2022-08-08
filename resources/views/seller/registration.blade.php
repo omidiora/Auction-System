@@ -66,7 +66,7 @@
                 <div class="header-wrapper">
                     <ul class="menu ml-auto">
                         <li>
-                            <a href="../index.html">Home</a>
+                            <a href="/">Home</a>
                         </li>
                         <li>
                             <a href="../bidder/product.html">Auction</a>
@@ -78,7 +78,7 @@
                             <a href="seller-dashboard.html">Dashboard</a>
                             <ul class="submenu">
                                 <li>
-                                    <a href="profile.html">Personal Profile</a>
+                                    <a href="{{route("personalProfile")}}">Personal Profile</a>
                                 </li>
                                 <li>
                                     <a href="my-bid.html">My Items</a>

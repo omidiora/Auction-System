@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="../assets/css/jquery-ui.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
 
+    {{-- https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.26.0/moment.min.js"></script>
+
     <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
     <style>
         html * {
@@ -164,7 +167,7 @@
                 <div class="header-wrapper">
                     <ul class="menu ml-auto">
                         <li>
-                            <a href="../index.html">Home</a>
+                            <a href="/">Home</a>
                         </li>
                         <li>
                             <a href="../bidder/product.html">Auction</a>
@@ -176,7 +179,7 @@
                             <a href="seller-dashboard.html">Dashboard</a>
                             <ul class="submenu">
                                 <li>
-                                    <a href="profile.html">Personal Profile</a>
+                                    <a href="{{route("personalProfile")}}">Personal Profile</a>
                                 </li>
                                 <li>
                                     <a href="my-bid.html">My Items</a>
@@ -323,7 +326,7 @@
                             .</p>.</p>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{route('upload')}}">
+                        <form method="POST" action="{{route('upload')}}" enctype="multipart/form-data">
                             @csrf
     
                             <div class="row mb-3">
@@ -395,6 +398,40 @@
                                 </div>
                             </div>
 
+                            <div class="row mb-3">
+                                 <label for=""  class="col-md-4 col-form-label text-md-end" >Starting Date</label>
+                                    <div class="col-md-6">
+                                        <input type="date" id="" name="starting_date" placeholder="Starting Date" class="form-control" style="font-size: 1em;">
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label for=""  class="col-md-4 col-form-label text-md-end" >Ending DAte</label>
+                                   <div class="col-md-6">
+                                       <input type="date" id="" name="ending_date" placeholder="Starting Date" class="form-control" style="font-size: 1em;">
+                               </div>
+                           </div>
+
+
+
+                           <div class="row mb-3">
+                            <label for="cover_image" class="col-md-4 col-form-label text-md-end">{{ __('Cover Image') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="cover_image"   class="form-control" type="file" id="formFile" @error('cover_image') is-invalid @enderror name="cover_image" value="{{ old('cover_image') }}" >
+
+                                @error('price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                           
+
+
+
 
 
 
@@ -405,7 +442,7 @@
                                         <div class="upload__btn-box">
                                             <label class="upload__btn custom-button">
                                                 <p>Upload images</p>
-                                                <input type="file" name="image" multiple="" data-max_length="20" class="upload__inputfile">
+                                                <input type="file" name="image[]" multiple accept="image/jpeg,image/gif,image/png,application/pdf" data-max_length="20" class="upload__inputfile">
                                             </label>
                                         </div>
                                         <span> <strong><em>Maximum of 6 pictures</em></strong>   </span>

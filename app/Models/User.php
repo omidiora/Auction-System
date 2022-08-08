@@ -22,8 +22,8 @@ class User extends Authenticatable
         'email',
         'password',
         'matric_no',
-        'department' ,
-        'mobile' ,
+        'department',
+        'mobile',
         "gender",
         'dob',
         'address',
@@ -35,7 +35,7 @@ class User extends Authenticatable
         'picture'
 
     ];
-   
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -54,4 +54,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function Product()
+
+    {
+
+        return $this->belongsToMany(Product::class, 'role_user');
+    }
 }
