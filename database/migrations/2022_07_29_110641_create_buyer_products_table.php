@@ -17,6 +17,9 @@ class CreateBuyerProductsTable extends Migration
             $table->id();
             $table->string("product_id");
             $table->string("user_id");
+            $table->string("winning_user_id");
+            $table->string("paid_product_id");
+
             $table->timestamps();
         });
     }

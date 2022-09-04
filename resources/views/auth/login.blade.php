@@ -36,83 +36,21 @@
     <!--============= Header Section Starts Here =============-->
     <header>
         <div class="header-top">
-            <div class="container">
-                <div class="header-top-wrapper">
-                    <ul class="customer-support">
-                        <li>
-                            <a href="#0" class="mr-3"><i class="fas fa-phone-alt"></i><span class="ml-2 d-none d-sm-inline-block">Customer Support</span></a>
-                        </li>
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <select name="language" class="select-bar">
-                                <option value="en">En</option>
-                                <option value="Yor">Bn</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <ul class="cart-button-area">
-                        <li>
-                            <a href="#0" class="cart-button"><i class="flaticon-shopping-basket"></i><span class="amount">08</span></a>
-                        </li>
-                        <li>
-                            <a href="seller-login.html" class="user-button"><i class="flaticon-user"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+           @include('component.trans')
         </div>
         <div class="header-bottom">
             <div class="container">
                 <div class="header-wrapper">
-                    <ul class="menu ml-auto">
-                        <li>
-                            <a href="../index.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="../bidder/product.html">Auction</a>
-                        </li>
-                        <li>
-                            <a href="seller-item-list.html">Sell</a>
-                        </li>
-                        <li>
-                            <a href="seller-dashboard.html">Dashboard</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="profile.html">Personal Profile</a>
-                                </li>
-                                <li>
-                                    <a href="my-bid.html">My Items</a>
-                                </li>
-                                <li>
-                                    <a href="winning-bids.html">Sold Items</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notification</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="my-favorites.html">My Favorites</a>
-                                </li> -->
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="sell-register.html">My Account</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="sell-register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="seller-login.html">Login</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="../bidder/contact.html">Contact</a>
-                        </li>
-                    </ul>
-                    <form class="search-form">
-                        <input type="text" placeholder="Search for products....">
+                    <!-- <div class="logo" style="width: 130px;">
+                        <a href="index.html">
+                            <img src="assets/images/logo/logo1.png" alt="logo" style="height: 120px;">
+                        </a>
+                    </div> -->
+                    @include('component.header')
+                    {{-- <form class="search-form">
+                        <input type="text" placeholder="Search for product....">
                         <button type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+                    </form> --}}
                     <div class="search-bar d-md-none">
                         <a href="#0"><i class="fas fa-search"></i></a>
                     </div>
@@ -210,32 +148,50 @@
             <div class="account-wrapper mt--100 mt-lg--440">
                 <div class="left-side">
                     <div class="section-header">
-                        <h2 class="title">HI, THERE Seller</h2>
-                        <p>You can log in to your account here.</p>
+                        <h2 class="title"></h2>
+                        <p>{{ __('messages.Login') }}</p>
+                        <p> @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                         @endif</p>
                     </div>
-                    <form class="login-form">
+                    <form class="login-form"  method="POST" action="{{ route('login') }}">
+                        @csrf
                         <div class="form-group mb-30">
                             <label for="login-email"><i class="far fa-envelope"></i></label>
-                            <input type="text" id="login-email" placeholder="Email Address">
+                            <input id="email" placeholder="Email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email" >
+
+
+                            @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
                         <div class="form-group">
                             <label for="login-pass"><i class="fas fa-lock"></i></label>
-                            <input type="password" id="login-pass" placeholder="Password">
-                            <span class="pass-type"><i class="fas fa-eye"></i></span>
+                            <input id="password" placeholder="Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="current-password">
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <a href="#0">Forgot Password?</a>
-                        </div>
+                        </div> --}}
                         <div class="form-group mb-0">
-                            <button type="submit" class="custom-button">LOG IN</button>
+                            <button type="submit" class="custom-button">{{ __('messages.Login') }}</button>
                         </div>
                     </form>
                 </div>
                 <div class="right-side cl-white">
                     <div class="section-header mb-0">
-                        <h3 class="title mt-0">NEW HERE?</h3>
-                        <p>Register and create your Account</p>
-                        <a href="sell-register.html" class="custom-button transparent">Register</a>
+                        {{-- <h3 class="title mt-0"> {{ __('messages.NEWHERE') }}</h3>
+                        <p>{{ __('messages.register2') }}</p>
+                        <a href="sell-register.html" class="custom-button transparent">{{ __('messages.register1') }}</a> --}}
                     </div>
                 </div>
             </div>
@@ -405,7 +361,8 @@
     </footer>
     <!--============= Footer Section Ends Here =============-->
 
-
+    
+    
 
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="../assets/js/jquery-3.3.1.min.js"></script>
@@ -423,5 +380,24 @@
     <script src="../assets/js/jquery-ui.min.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
+
+
+<script type="text/javascript">
+
+
+
+var url = "{{ route('changeLang') }}";
+
+
+
+$(".changeLang").change(function(){
+
+    window.location.href = url + "?lang="+ $(this).val();
+
+});
+
+
+
+</script>
 
 </html>

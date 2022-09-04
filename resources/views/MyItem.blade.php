@@ -74,51 +74,7 @@
                             <img src="assets/images/logo/logo.png" alt="logo">
                         </a>
                     </div> -->
-                    <ul class="menu ml-auto">
-                        <li>
-                            <a href="../index.html">Home</a>
-                        </li>
-                        <li>
-                            <a href="../bidder/product.html">Auction</a>
-                        </li>
-                        <li>
-                            <a href="seller-item-list.html">Sell</a>
-                        </li>
-                        <li>
-                            <a href="seller-dashboard.html">Dashboard</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="profile.html">Personal Profile</a>
-                                </li>
-                                <li>
-                                    <a href="my-bid.html">My Items</a>
-                                </li>
-                                <li>
-                                    <a href="winning-bids.html">Sold Items</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notification</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="my-favorites.html">My Favorites</a>
-                                </li> -->
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="sell-register.html">My Account</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="sell-register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="seller-login.html">Login</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="../bidder/contact.html">Contact</a>
-                        </li>
-                    </ul>
+                    @include('component.header')
                     <!-- <form class="search-form">
                         <input type="text" placeholder="Search for products....">
                         <button type="submit"><i class="fas fa-search"></i></button>
@@ -235,19 +191,19 @@
                         </div>
                         <ul class="dashboard-menu">
                             <li>
-                                <a href="seller-dashboard.html"><i class="flaticon-dashboard"></i>Dashboard</a>
+                                <a href="{{route("SellerDashboard")}}"><i class="flaticon-dashboard"></i>Dashboard</a>
                             </li>
                             <li>
-                                <a href="profile.html"><i class="flaticon-settings"></i>Personal Profile </a>
+                                <a href="{{route("personalProfile")}}"><i class="flaticon-settings"></i>Personal Profile </a>
                             </li>
                             <li>
-                                <a href="my-bid.html" class="active"><i class="flaticon-auction"></i>My Items</a>
+                                <a href="{{route("myitem")}}" class="active"><i class="flaticon-auction"></i>My Items</a>
                             </li>
                             <li>
-                                <a href="winning-bids.html"><i class="flaticon-best-seller"></i>Sold Items</a>
+                                <a href="{{route('SoldItem')}}"><i class="flaticon-best-seller"></i>Sold Items</a>
                             </li>
                             <li>
-                                <a href="notifications.html"><i class="flaticon-alarm"></i>Notification</a>
+                                <a href="{{route("SellerNotify")}}"><i class="flaticon-alarm"></i>Notification</a>
                             </li>
                             <!-- <li>
                                 <a href="my-favorites.html"><i class="flaticon-star"></i>My Favorites</a>

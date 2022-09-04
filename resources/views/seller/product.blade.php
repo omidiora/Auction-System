@@ -139,77 +139,14 @@
         <div class="header-top">
             <div class="container">
                 <div class="header-top-wrapper">
-                    <ul class="customer-support">
-                        <!-- <li>
-                            <a href="#0" class="mr-3"><i class="fas fa-phone-alt"></i><span class="ml-2 d-none d-sm-inline-block">Customer Support</span></a>
-                        </li> -->
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <select name="language" class="select-bar">
-                                <option value="en">En</option>
-                                <option value="Yor">Bn</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <ul class="cart-button-area">
-                        <li>
-                            <a href="#0" class="cart-button"><i class="flaticon-shopping-basket"></i><span class="amount">08</span></a>
-                        </li>
-                        <li>
-                            <a href="seller-login.html" class="user-button"><i class="flaticon-user"></i></a>
-                        </li>
-                    </ul>
+                    @include('component.trans')
                 </div>
             </div>
         </div>
         <div class="header-bottom">
             <div class="container" style="display: flex; justify-content: center;">
                 <div class="header-wrapper">
-                    <ul class="menu ml-auto">
-                        <li>
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="../bidder/product.html">Auction</a>
-                        </li>
-                        <li>
-                            <a href="seller-item-list.html">Sell</a>
-                        </li>
-                        <li>
-                            <a href="seller-dashboard.html">Dashboard</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="{{route("personalProfile")}}">Personal Profile</a>
-                                </li>
-                                <li>
-                                    <a href="my-bid.html">My Items</a>
-                                </li>
-                                <li>
-                                    <a href="winning-bids.html">Sold Items</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notification</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="my-favorites.html">My Favorites</a>
-                                </li> -->
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="sell-register.html">My Account</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="sell-register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="seller-login.html">Login</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="../bidder/contact.html">Contact</a>
-                        </li>
-                    </ul>
+                   @include('component.header')
                     <!-- <form class="search-form">
                         <input type="text" placeholder="Search for products....">
                         <button type="submit"><i class="fas fa-search"></i></button>
@@ -310,8 +247,14 @@
             <div class="account-wrapper mt--100 mt-lg--440">
                 <div class="left-side" style="width: 100%;">
                     <div class="section-header">
-                        <h3 class="title">YOU ARE WELCOME TO MULTILINGUAL ONLINE AUCTION SYSTEM</h3>
+                        <h3 class="title">{{ __('messages.message1') }}</h3>
                         <p style="font-size: 20px;">
+
+                            @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                             
                             @if (count($errors) > 0)
                             <div class="alert alert-danger">
@@ -330,7 +273,7 @@
                             @csrf
     
                             <div class="row mb-3">
-                                <label for="Product Name" class="col-md-4 col-form-label text-md-end">{{ __('Product  Name') }}</label>
+                                <label for="Product Name" class="col-md-4 col-form-label text-md-end">{{ __('messages.product_name') }}</label>
     
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" >
@@ -344,7 +287,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="Product Category" class="col-md-4 col-form-label text-md-end">{{ __('Product Category') }}</label>
+                                <label for="Product Category" class="col-md-4 col-form-label text-md-end">{{ __('messages.product_category') }}</label>
     
                                 <div class="col-md-6">
                                     <select  name="category" class="form-control" id="" style="font-size: 1em;">
@@ -365,7 +308,7 @@
 
 
                             <div class="row mb-3">
-                                <label for="Condition" class="col-md-4 col-form-label text-md-end">{{ __('Condition') }}</label>
+                                <label for="Condition" class="col-md-4 col-form-label text-md-end">{{ __('messages.condition') }}</label>
     
                                 <div class="col-md-6">
                                     {{-- <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="product_name" value="{{ old('email') }}" > --}}
@@ -385,7 +328,7 @@
 
 
                             <div class="row mb-3">
-                                <label for="Price" class="col-md-4 col-form-label text-md-end">{{ __('Price') }}</label>
+                                <label for="Price" class="col-md-4 col-form-label text-md-end">{{ __('messages.Price') }}</label>
     
                                 <div class="col-md-6">
                                     <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" >
@@ -399,7 +342,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                 <label for=""  class="col-md-4 col-form-label text-md-end" >Starting Date</label>
+                                 <label for=""  class="col-md-4 col-form-label text-md-end" >{{ __('messages.starting_date') }}</label>
                                     <div class="col-md-6">
                                         <input type="date" id="" name="starting_date" placeholder="Starting Date" class="form-control" style="font-size: 1em;">
                                 </div>
@@ -407,7 +350,7 @@
 
 
                             <div class="row mb-3">
-                                <label for=""  class="col-md-4 col-form-label text-md-end" >Ending DAte</label>
+                                <label for=""  class="col-md-4 col-form-label text-md-end" >{{ __('messages.ending_date') }}</label>
                                    <div class="col-md-6">
                                        <input type="date" id="" name="ending_date" placeholder="Starting Date" class="form-control" style="font-size: 1em;">
                                </div>
@@ -416,7 +359,7 @@
 
 
                            <div class="row mb-3">
-                            <label for="cover_image" class="col-md-4 col-form-label text-md-end">{{ __('Cover Image') }}</label>
+                            <label for="cover_image" class="col-md-4 col-form-label text-md-end">{{ __('messages.cover_image') }}</label>
 
                             <div class="col-md-6">
                                 <input id="cover_image"   class="form-control" type="file" id="formFile" @error('cover_image') is-invalid @enderror name="cover_image" value="{{ old('cover_image') }}" >
@@ -445,7 +388,7 @@
                                                 <input type="file" name="image[]" multiple accept="image/jpeg,image/gif,image/png,application/pdf" data-max_length="20" class="upload__inputfile">
                                             </label>
                                         </div>
-                                        <span> <strong><em>Maximum of 6 pictures</em></strong>   </span>
+                                        <span> <strong><em>{{ __('messages.max') }}</em></strong>   </span>
                                     </div>
                                     <div class="col-md-9">
                                         <div class="upload__img-wrap"></div>
@@ -455,7 +398,7 @@
 
 
                             <div class="row mb-3">
-                                <label for="Product Description" class="col-md-4 col-form-label text-md-end">{{ __('Product Description') }}</label>
+                                <label for="Product Description" class="col-md-4 col-form-label text-md-end">{{ __('messages.product_d') }}</label>
                                 
                                 <div class="col-md-6">
                                     {{-- <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="product_name" value="{{ old('email') }}" > --}}
@@ -794,5 +737,25 @@
         }
     </script>
 </body>
+
+
+
+<script type="text/javascript">
+
+  
+
+    var url = "{{ route('changeLang') }}";
+
+  
+
+    $(".changeLang").change(function(){
+
+        window.location.href = url + "?lang="+ $(this).val();
+
+    });
+
+  
+
+</script>
 
 </html>

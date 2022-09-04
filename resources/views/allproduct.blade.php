@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Multilingual Online Auction System</title>
+    <title>Multilingual Online {{route("upload")}} System</title>
 
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/all.min.css">
@@ -43,28 +43,7 @@
     <header>
         <div class="header-top">
             <div class="container">
-                <div class="header-top-wrapper">
-                    <ul class="customer-support">
-                        <!-- <li>
-                            <a href="#0" class="mr-3"><i class="fas fa-phone-alt"></i><span class="ml-2 d-none d-sm-inline-block">Customer Support</span></a>
-                        </li> -->
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <select name="language" class="select-bar">
-                                <option value="en">En</option>
-                                <option value="Bn">Yor</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <ul class="cart-button-area">
-                        <li>
-                            <a href="#0" class="cart-button"><i class="flaticon-shopping-basket"></i><span class="amount">08</span></a>
-                        </li>
-                        <li>
-                            <a href="sign-in.html" class="user-button"><i class="flaticon-user"></i></a>
-                        </li>
-                    </ul>
-                </div>
+                @include('component.trans')
             </div>
         </div>
         <div class="header-bottom">
@@ -75,53 +54,10 @@
                             <img src="assets/images/logo/logo.png" alt="logo">
                         </a>
                     </div> -->
-                    <ul class="menu ml-auto">
-                        <li>
-                            <a  href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Auction</a>
-                        </li>
-                        <li>
-                            <a href="../seller/seller-item-list.html">Sell</a>
-                        </li>
-                        <li>
-                            <a href="dashboard.html">Dashboard</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="{{route("personalProfile")}}">Personal Profile</a>
-                                </li>
-                                <li>
-                                    <a href="my-bid.html">My Bids</a>
-                                </li>
-                                <li>
-                                    <a href="winning-bids.html">Winning Bids</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notification</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="my-favorites.html">My Favorites</a>
-                                </li> -->
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="sign-up.html">My Account</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="sign-up.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="sign-in.html">Login</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="contact.html">Contact</a>
-                        </li>
-                    </ul>
-                    <form class="search-form">
-                        <input type="text" placeholder="Search for products....">
+                    
+                    @include('component.header')
+                    <form class="search-form" action="{{ route('search') }}" method="GET">
+                        <input type="text" name="search" placeholder="Search for products....">
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </form>
                     <div class="search-bar d-md-none">
@@ -219,7 +155,7 @@
     <section class="featured-auction-section padding-bottom mt--240 mt-lg--440 pos-rel">
         <div class="container">
             <div class="section-header cl-white mw-100 left-style">
-                <h3 class="title">Bid on These Featured Auctions!</h3>
+                <h3 class="title">{{ __('messages.bidFeatures') }}!</h3>
             </div>
          @if (count($products)>0)
           
@@ -228,7 +164,7 @@
     <div class="col-sm-10 col-md-6 col-lg-4">
         <div class="auction-item-2">
             <div class="auction-thumb">
-                <a href="product-details.html"><img  src="{{ asset('storage/'.$item->cover_image) }}" alt="car"></a>
+                <a ><img  src="{{ asset('/cover/'.$item->cover_image) }}" alt="car"></a>
                 <a href="#0" class="rating"><i class="far fa-star"></i></a>
                 <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
             </div>
@@ -261,7 +197,17 @@
                     <span class="total-bids">{{$item->bid==null ? 0 :$item->bid}}  bids</span>
                 </div> --}}
                 <div class="text-center">
-                    <a href="bid/{{$item->id}}" class="custom-button">Submit a bid</a>
+                    <a href="bid/{{$item->id}}" class="custom-button">
+                        {{-- Submit a bid --}}
+                        @if ($item->ended_bid==1)
+                            {{'Bid has ended'}}
+                        @else
+                        {{'Submit a bid'}}
+                        @endif
+
+                   
+                    
+                    </a>
                 </div>
             </div>
         </div>
@@ -383,7 +329,7 @@
                                     <a href="#0">Auction</a>
                                 </li>
                                 <li>
-                                    <a href="../seller/seller-item-list.html">Sell</a>
+                                    <a href="{{route("upload")}}">Sell</a>
                                 </li>
                                 <li>
                                     <a href="#0">Help</a>
@@ -498,5 +444,25 @@
     <script src="../assets/js/jquery-ui.min.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
+
+
+
+<script type="text/javascript">
+
+  
+
+    var url = "{{ route('changeLang') }}";
+
+  
+
+    $(".changeLang").change(function(){
+
+        window.location.href = url + "?lang="+ $(this).val();
+
+    });
+
+  
+
+</script>
 
 </html>

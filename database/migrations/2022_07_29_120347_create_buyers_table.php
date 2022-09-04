@@ -18,7 +18,7 @@ class CreateBuyersTable extends Migration
             $table->string("product_id");
             $table->string("user_id");
             $table->string("name");
-            $table->string("price");
+            $table->float('price', 12, 2);;
             $table->timestamps();
         });
     }

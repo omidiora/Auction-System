@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->longText('description');
             $table->string('starting_date')->nullable();
             $table->string('ending_date')->nullable();
+            $table->string('ended_bid')->nullable();
             $table->string('price');
             $table->string('bid')->nullable();;
             $table->timestamps();

@@ -37,82 +37,13 @@
     <header>
         <div class="header-top">
             <div class="container">
-                <div class="header-top-wrapper">
-                    <ul class="customer-support">
-                        <li>
-                            <a href="#0" class="mr-3"><i class="fas fa-phone-alt"></i><span class="ml-2 d-none d-sm-inline-block">Customer Support</span></a>
-                        </li>
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <select name="language" class="select-bar">
-                                <option value="en">En</option>
-                                <option value="Bn">Yor</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <ul class="cart-button-area">
-                        <li>
-                            <a href="#0" class="cart-button"><i class="flaticon-shopping-basket"></i><span class="amount">08</span></a>
-                        </li>
-                        <li>
-                            <a href="seller-login.html" class="user-button"><i class="flaticon-user"></i></a>
-                        </li>
-                    </ul>
-                </div>
+                @include('component.trans')
             </div>
         </div>
         <div class="header-bottom">
             <div class="container">
                 <div class="header-wrapper">
-                    <ul class="menu ml-auto">
-                        <li>
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="../bidder/product.html">Auction</a>
-                        </li>
-                        <li>
-                            <a href="seller-item-list.html">Sell</a>
-                        </li>
-                        <li>
-                            <a href="seller-dashboard.html">Dashboard</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="{{route("personalProfile")}}">Personal Profile</a>
-                                </li>
-                                <li>
-                                    <a href="my-bid.html">My Items</a>
-                                </li>
-                                <li>
-                                    <a href="winning-bids.html">Sold Items</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notification</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="my-favorites.html">My Favorites</a>
-                                </li> -->
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="sell-register.html">My Account</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="sell-register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="seller-login.html">Login</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="../bidder/contact.html">Contact</a>
-                        </li>
-                    </ul>
-                    <form class="search-form">
-                        <input type="text" placeholder="Search for products....">
-                        <button type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+                    @include('component.header')
                     <div class="search-bar d-md-none">
                         <a href="#0"><i class="fas fa-search"></i></a>
                     </div>
@@ -210,8 +141,8 @@
             <div class="account-wrapper mt--100 mt-lg--440">
                 <div class="left-side">
                     <div class="section-header">
-                        <h2 class="title">REGISTER AS A SELLER</h2>
-                        <p>We're happy you're here!</p>
+                        <h2 class="title">{{ __('messages.RegSeller') }}</h2>
+                        <p>{{ __('messages.happy') }}</p>
                     </div>
                     <!-- <ul class="login-with">
                         <li>
@@ -228,7 +159,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('messages.Name') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
@@ -242,7 +173,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('messages.EmailAddress') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
@@ -274,7 +205,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Department.') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('messages.Department') }}</label>
                             
                             <div class="col-md-6">
                                 <input id="department" type="department" class="form-control @error('department') is-invalid @enderror" name="department" value="{{ old('department') }}"  autocomplete="department">
@@ -289,7 +220,7 @@
                         
 
                         <div class="row mb-3">
-                            <label for="mobile" class="col-md-4 col-form-label text-md-end">{{ __('Phone No.') }}</label>
+                            <label for="mobile" class="col-md-4 col-form-label text-md-end">{{ __('messages.phone') }}</label>
 
                             <div class="col-md-6">
                                 <input id="mobile" type="mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}"  autocomplete="mobile">
@@ -303,7 +234,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="dob" class="col-md-4 col-form-label text-md-end">{{ __('Date of birh.') }}</label>
+                            <label for="dob" class="col-md-4 col-form-label text-md-end">{{ __('messages.dob') }}</label>
 
                             <div class="col-md-6">
                                 <input id="dob" type="dob" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}"  autocomplete="dob">
@@ -320,7 +251,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('Address') }}</label>
+                            <label for="address" class="col-md-4 col-form-label text-md-end">{{ __('messages.Address') }}</label>
 
                             <div class="col-md-6">
                                 <input id="address" type="address" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}"  autocomplete="address">
@@ -337,7 +268,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="delivery_address" class="col-md-4 col-form-label text-md-end">{{ __('Delivery Address') }}</label>
+                            <label for="delivery_address" class="col-md-4 col-form-label text-md-end">{{ __('messages.DeliveryAddress') }}</label>
 
                             <div class="col-md-6">
                                 <input id="delivery_address" type="delivery_address" class="form-control @error('delivery_address') is-invalid @enderror" name="delivery_address" value="{{ old('delivery_address') }}"  autocomplete="delivery_address">
@@ -382,10 +313,11 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- BankName --}}
 
                         
                         <div class="row mb-3">
-                            <label for="bank_name" class="col-md-4 col-form-label text-md-end">{{ __('Bank Name') }}</label>
+                            <label for="bank_name" class="col-md-4 col-form-label text-md-end">{{ __('messages.BankName') }}</label>
 
                             <div class="col-md-6">
                                 <input id="bank_name" type="bank_name" class="form-control @error('bank_name') is-invalid @enderror" name="bank_name" value="{{ old('bank_name') }}"  autocomplete="bank_name">
@@ -401,7 +333,8 @@
 
 
                         <div class="row mb-3">
-                            <label for="bank_no" class="col-md-4 col-form-label text-md-end">{{ __('Account Number') }}</label>
+                            {{-- AccountNumber --}}
+                            <label for="bank_no" class="col-md-4 col-form-label text-md-end">{{ __('messages.AccountNumber') }}</label>
 
                             <div class="col-md-6">
                                 <input id="bank_no" type="bank_no" class="form-control @error('bank_no') is-invalid @enderror" name="bank_no" value="{{ old('bank_no') }}"  autocomplete="bank_no">
@@ -426,7 +359,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('messages.password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
@@ -440,7 +373,9 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">
+                                {{ __('messages.ConfirmPassword') }}
+                            </label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
@@ -458,9 +393,10 @@
                 </div>
                 <div class="right-side cl-white">
                     <div class="section-header mb-0">
-                        <h3 class="title mt-0">ALREADY HAVE AN ACCOUNT?</h3>
-                        <p>Log in and go to your Dashboard.</p>
-                        <a href="seller-login.html" class="custom-button transparent">Login</a>
+                        <h3 class="title mt-0">{{ __('messages.ALREADYHAVEANACCOUNT') }}</h3>
+                        {{-- "loginDashboard" --}}
+                        <p>{{ __('messages.loginDashboard') }}</p>
+                        <a href="/login" class="custom-button transparent">Login</a>
                     </div>
                 </div>
             </div>
@@ -667,5 +603,25 @@
     <script src="../assets/js/jquery-ui.min.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
+
+<script type="text/javascript">
+
+  
+
+    var url = "{{ route('changeLang') }}";
+
+  
+
+    $(".changeLang").change(function(){
+
+        window.location.href = url + "?lang="+ $(this).val();
+
+    });
+
+  
+
+</script>
+
+
 
 </html>

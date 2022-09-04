@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../../assets/css/jquery-ui.min.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
 
-    <link rel="shortcut icon" href="../../assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../../assets/images/favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -51,9 +51,7 @@
                         </li>
                     </ul>
                     <ul class="cart-button-area">
-                        <li>
-                            <a href="#0" class="cart-button"><i class="flaticon-shopping-basket"></i><span class="amount">08</span></a>
-                        </li>
+                      
                         <li>
                             <a href="sign-in.html" class="user-button"><i class="flaticon-user"></i></a>
                         </li>
@@ -69,51 +67,7 @@
                             <img src="assets/images/logo/logo.png" alt="logo">
                         </a>
                     </div> -->
-                    <ul class="menu ml-auto">
-                        <li>
-                            <a  href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Auction</a>
-                        </li>
-                        <li>
-                            <a href="../seller/seller-item-list.html">Sell</a>
-                        </li>
-                        <li>
-                            <a href="dashboard.html">Dashboard</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="{{route("personalProfile")}}">Personal Profile</a>
-                                </li>
-                                <li>
-                                    <a href="my-bid.html">My Bids</a>
-                                </li>
-                                <li>
-                                    <a href="winning-bids.html">Winning Bids</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notification</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="my-favorites.html">My Favorites</a>
-                                </li> -->
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="sign-up.html">My Account</a>
-                            <ul class="submenu">
-                                <li>
-                                    <a href="sign-up.html">Register</a>
-                                </li>
-                                <li>
-                                    <a href="sign-in.html">Login</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="contact.html">Contact</a>
-                        </li>
-                    </ul>
+                    @include('component.header')
                     <!-- <form class="search-form">
                         <input type="text" placeholder="Search for products....">
                         <button type="submit"><i class="fas fa-search"></i></button>
@@ -145,7 +99,7 @@
                 <h4 class="title">Shopping cart</h4>
                 <div class="single-product-item">
                     <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop01.jpg" alt="shop"></a>
+                        <a href="#0"><img src="../../assets/images/shop/shop01.jpg" alt="shop"></a>
                     </div>
                     <div class="content">
                         <h4 class="title"><a href="#0">Color Pencil</a></h4>
@@ -155,7 +109,7 @@
                 </div>
                 <div class="single-product-item">
                     <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop02.jpg" alt="shop"></a>
+                        <a href="#0"><img src="../../assets/images/shop/shop02.jpg" alt="shop"></a>
                     </div>
                     <div class="content">
                         <h4 class="title"><a href="#0">Water Pot</a></h4>
@@ -165,7 +119,7 @@
                 </div>
                 <div class="single-product-item">
                     <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop03.jpg" alt="shop"></a>
+                        <a href="#0"><img src="../../assets/images/shop/shop03.jpg" alt="shop"></a>
                     </div>
                     <div class="content">
                         <h4 class="title"><a href="#0">Art Paper</a></h4>
@@ -175,7 +129,7 @@
                 </div>
                 <div class="single-product-item">
                     <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop04.jpg" alt="shop"></a>
+                        <a href="#0"><img src="../../assets/images/shop/shop04.jpg" alt="shop"></a>
                     </div>
                     <div class="content">
                         <h4 class="title"><a href="#0">Stop Watch</a></h4>
@@ -185,7 +139,7 @@
                 </div>
                 <div class="single-product-item">
                     <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop05.jpg" alt="shop"></a>
+                        <a href="#0"><img src="../../assets/images/shop/shop05.jpg" alt="shop"></a>
                     </div>
                     <div class="content">
                         <h4 class="title"><a href="#0">Comics Book</a></h4>
@@ -204,7 +158,7 @@
 
     <!--============= Hero Section Starts Here =============-->
     <div class="hero-section style-2">
-        <div class="bg_img hero-bg bottom_center" data-background="../assets/images/banner/hero-bg.png"></div>
+        <div class="bg_img hero-bg bottom_center" data-background="../../assets/images/banner/hero-bg.png"></div>
     </div>
     <!--============= Hero Section Ends Here =============-->
 
@@ -216,68 +170,50 @@
                 <div class="product-details-slider owl-theme owl-carousel" id="sync1">
                     <div class="slide-top-item">
                         <div class="slide-inner">
-                            <img src="../assets/images/product/product1.png" alt="product">
+                            <img  src="{{ asset('cover/'.$products->cover_image) }}" alt="product"
+                             style="width:30;height:30">
+                        </div>
+                    </div>
+                    {{-- <div class="slide-top-item">
+                        <div class="slide-inner">
+                            <img src="../../assets/images/product/product2.png" alt="product">
+                        </div>
+                    </div> --}}
+                    {{-- <div class="slide-top-item">
+                        <div class="slide-inner">
+                            <img src="../../assets/images/product/product3.png" alt="product">
                         </div>
                     </div>
                     <div class="slide-top-item">
                         <div class="slide-inner">
-                            <img src="../assets/images/product/product2.png" alt="product">
+                            <img src="../../assets/images/product/product4.png" alt="product">
                         </div>
                     </div>
                     <div class="slide-top-item">
                         <div class="slide-inner">
-                            <img src="../assets/images/product/product3.png" alt="product">
+                            <img src="../../assets/images/product/product5.png" alt="product">
                         </div>
                     </div>
                     <div class="slide-top-item">
                         <div class="slide-inner">
-                            <img src="../assets/images/product/product4.png" alt="product">
+                            <img src="../../assets/images/product/product6.png" alt="product">
                         </div>
-                    </div>
-                    <div class="slide-top-item">
-                        <div class="slide-inner">
-                            <img src="../assets/images/product/product5.png" alt="product">
-                        </div>
-                    </div>
-                    <div class="slide-top-item">
-                        <div class="slide-inner">
-                            <img src="../assets/images/product/product6.png" alt="product">
-                        </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="product-details-slider-wrapper">
                 <div class="product-bottom-slider owl-theme owl-carousel" id="sync2">
+                    @foreach ($images as $image)
                     <div class="slide-bottom-item">
                         <div class="slide-inner">
-                            <img src="../assets/images/product/01.png" alt="product">
+                            <img  src="{{ asset('totalimage/'.$image->image) }}" alt="11car">
+
                         </div>
                     </div>
-                    <div class="slide-bottom-item">
-                        <div class="slide-inner">
-                            <img src="../assets/images/product/02.png" alt="product">
-                        </div>
-                    </div>
-                    <div class="slide-bottom-item">
-                        <div class="slide-inner">
-                            <img src="../assets/images/product/03.png" alt="product">
-                        </div>
-                    </div>
-                    <div class="slide-bottom-item">
-                        <div class="slide-inner">
-                            <img src="../assets/images/product/04.png" alt="product">
-                        </div>
-                    </div>
-                    <div class="slide-bottom-item">
-                        <div class="slide-inner">
-                            <img src="../assets/images/product/05.png" alt="product">
-                        </div>
-                    </div>
-                    <div class="slide-bottom-item">
-                        <div class="slide-inner">
-                            <img src="../assets/images/product/06.png" alt="product">
-                        </div>
-                    </div>
+                    @endforeach
+                    
+                   
+                  
                 </div>
                 <span class="det-prev det-nav">
                     <i class="fas fa-angle-left"></i>
@@ -306,14 +242,17 @@
                             <li class="header">
                                 <h5 class="current"> Price</h5>
                                 <h3 class="price"> &#x20A6;{{$products->price}}</h3>
-                            </li>
+                        </li>
                             <li>
                                 <span class="details"> Current Highest Bidding Price</span>
-                                <h5 class="info">@if (is_null($MAX_PRICE))
-                                  O
-                                  @else 
-                                 {{$MAX_PRICE}}
-                                @endif</h5>
+                                <h5 class="info">
+                                @if ($products->ended_bid==0)
+
+                                {{$MAX_PRICE}}
+                                    
+                                @else
+                                {{$MAX_PRICE}}
+                                @endif
                             </li>
                             <!-- <li>
                                 <span class="details">Bid Increment (US)</span>
@@ -321,14 +260,41 @@
                             </li> -->
                         </ul>
                         <div class="product-bid-area">
+                            @if ($products->ended_bid==1 && $MAX_PRICE_USER_ID==Auth::id())
+
+                            <div class="text-center">
+                                {{-- <a class="custom-button">
+                                    Pay
+                                </a> --}}
+
+                                <form method="POST" action="{{ route('pay') }}" id="paymentForm">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="amount" value="{{$MAX_PRICE}}" /> 
+                                    <input type="hidden" name="description" value="{{$products->description}}" />
+                                    <input type="hidden" name="email" value="{{Auth::user()->email}}" /> 
+                                    <button class="custom-button" type="submit">
+                                        Pay
+                                    </button> 
+
+                                </form>
+                               
+                            </div>
+                                
+                            @else
                             <form class="product-bid-form" method="POST" action="{{route('SubmitBidPage')}}">
                                 @csrf
                                
                                 <input type="hidden" name="user_id"value={{$products->user_id}}>
                                 <input type="hidden" name="name"value={{$products->name}}>
                                 <input type="hidden" name="product_id" value={{$products->id}}>
-                                <input type="text" placeholder="Enter you bid amount" name="price">
+
+                                @if ($products->ended_bid !== "1")
+                                <input type="text" placeholder="Enter your bid amount" name="price">
                                 <button class="custom-button">Submit a bid</button>
+                                @else
+                                     <h6 style="margin-left:130px;margin-top:10px;color:red">Bid has ended</h6>
+                                @endif
+                               
 
                                 <div>
                                     @foreach ($errors->all() as $error)
@@ -341,6 +307,8 @@
 
 
                             </form>
+                            @endif
+                          
                         </div>
                         <!-- <div class="buy-now-area">
                             <a href="#0" class="custom-button">Buy Now: $4,200</a>
@@ -369,18 +337,19 @@
                     <div class="product-sidebar-area">
                         <div class="product-single-sidebar mb-3">
                             <h6 class="title">This Auction Ends in:</h6>
-                            <div class="countdown">
-                                <div id="bid_counter1"></div>
+                            <div style="color:'red">
+                               {{-- {{\Carbon\Carbon::now();}} --}}
+                            <h4 style="color:red"> {{$remaining_days}} Days Left</h4>
                             </div>
                             <div class="side-counter-area">
                                 <div class="side-counter-item">
                                     <div class="thumb">
-                                        <img src="../assets/images/product/icon1.png" alt="product">
+                                        <img src="../../assets/images/product/icon1.png" alt="product">
                                     </div>
                                     <div class="content">
                                         <h3 class="count-title"><span class="counter">
                                             @if (is_null($count_bidder))
-                                  O
+                                  0
                                   @else 
                                  {{$count_bidder}}
                                 @endif</span></h3>
@@ -418,7 +387,7 @@
                     <li>
                         <a href="#details" class="active" data-toggle="tab">
                             <div class="thumb">
-                                <img src="../assets/images/product/tab1.png" alt="product">
+                                <img src="../../assets/images/product/tab1.png" alt="product">
                             </div>
                             <div class="content">Description</div>
                         </a>
@@ -426,9 +395,9 @@
                     <li>
                         <a href="#history" data-toggle="tab">
                             <div class="thumb">
-                                <img src="../assets/images/product/tab3.png" alt="product">
+                                <img src="../../assets/images/product/tab3.png" alt="product">
                             </div>
-                            <div class="content">Bidders (36)</div>
+                            <div class="content">Bidders ({{count($bidders)}})</div>
                         </a>
                     </li>
                 </ul>
@@ -547,92 +516,35 @@
                                     <thead>
                                         <tr>
                                             <th>Bidder</th>
-                                            <th>date</th>
-                                            <th>time</th>
+                                            <th>Deparment</th>
+                                            <th>{{null}}</th>
                                             <th>price</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($bidders as $item)
                                         <tr>
                                             <td data-history="bidder">
                                                 <div class="user-info">
                                                     <div class="thumb">
-                                                        <img src="../assets/images/history/01.png" alt="history">
+                                                        {{-- <img src="../../assets/images/history/01.png" alt="history"> --}}
                                                     </div>
                                                     <div class="content">
-                                                        Moses Watts
+                                                    {{$item->name}}
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td data-history="date">06/16/2021</td>
-                                            <td data-history="time">02:45:25 PM</td>
-                                            <td data-history="unit price">$900.00</td>
+                                            <td data-history="date">{{$item->department}}</td>
+                                            <td data-history="time">{{null}}</td>
+                                            <td data-history="unit price"> {{$item->price}}</td>
                                         </tr>
-                                        <tr>
-                                            <td data-history="bidder">
-                                                <div class="user-info">
-                                                    <div class="thumb">
-                                                        <img src="../assets/images/history/02.png" alt="history">
-                                                    </div>
-                                                    <div class="content">
-                                                        Pat Powell
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td data-history="date">06/16/2021</td>
-                                            <td data-history="time">02:45:25 PM</td>
-                                            <td data-history="unit price">$900.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-history="bidder">
-                                                <div class="user-info">
-                                                    <div class="thumb">
-                                                        <img src="../assets/images/history/03.png" alt="history">
-                                                    </div>
-                                                    <div class="content">
-                                                        Jack Rodgers
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td data-history="date">06/16/2021</td>
-                                            <td data-history="time">02:45:25 PM</td>
-                                            <td data-history="unit price">$900.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-history="bidder">
-                                                <div class="user-info">
-                                                    <div class="thumb">
-                                                        <img src="../assets/images/history/04.png" alt="history">
-                                                    </div>
-                                                    <div class="content">
-                                                        Arlene Paul
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td data-history="date">06/16/2021</td>
-                                            <td data-history="time">02:45:25 PM</td>
-                                            <td data-history="unit price">$900.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td data-history="bidder">
-                                                <div class="user-info">
-                                                    <div class="thumb">
-                                                        <img src="../assets/images/history/05.png" alt="history">
-                                                    </div>
-                                                    <div class="content">
-                                                        Marcia Clarke
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td data-history="date">06/16/2021</td>
-                                            <td data-history="time">02:45:25 PM</td>
-                                            <td data-history="unit price">$900.00</td>
-                                        </tr>
+                                            
+                                        @endforeach
+                                        
+                                       
                                     </tbody>
                                 </table>
-                                <div class="text-center mb-3 mt-4">
-                                    <a href="#0" class="button-3">Load More</a>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -645,28 +557,28 @@
 
 
     <!--============= Footer Section Starts Here =============-->
-    <footer class="bg_img padding-top oh" data-background="../assets/images/footer/footer-bg.jpg">
+    <footer class="bg_img padding-top oh" data-background="../../assets/images/footer/footer-bg.jpg">
         <div class="footer-top-shape">
             <img src="../assets/css/img/footer-top-shape.png" alt="css">
         </div>
         <div class="anime-wrapper">
             <div class="anime-1 plus-anime">
-                <img src="../assets/images/footer/p1.png" alt="footer">
+                <img src="../../assets/images/footer/p1.png" alt="footer">
             </div>
             <div class="anime-2 plus-anime">
-                <img src="../assets/images/footer/p2.png" alt="footer">
+                <img src="../../assets/images/footer/p2.png" alt="footer">
             </div>
             <div class="anime-3 plus-anime">
-                <img src="../assets/images/footer/p3.png" alt="footer">
+                <img src="../../assets/images/footer/p3.png" alt="footer">
             </div>
             <div class="anime-5 zigzag">
-                <img src="../assets/images/footer/c2.png" alt="footer">
+                <img src="../../assets/images/footer/c2.png" alt="footer">
             </div>
             <div class="anime-6 zigzag">
-                <img src="../assets/images/footer/c3.png" alt="footer">
+                <img src="../../assets/images/footer/c3.png" alt="footer">
             </div>
             <div class="anime-7 zigzag">
-                <img src="../assets/images/footer/c4.png" alt="footer">
+                <img src="../../assets/images/footer/c4.png" alt="footer">
             </div>
         </div>
         <!-- <div class="newslater-wrapper">
@@ -724,10 +636,10 @@
                                     <a href="#0">About Multilingual Online Auction System</a>
                                 </li>
                                 <li>
-                                    <a href="#0">Auction</a>
+                                    <a href="{{route("all")}}">Auction</a>
                                 </li>
                                 <li>
-                                    <a href="../seller-item-list.html">Sell</a>
+                                    <a href="{{route("upload")}}">Sell</a>
                                 </li>
                                 <li>
                                     <a href="#0">Help</a>
@@ -801,17 +713,18 @@
                             <a href="index.html"><img src="assets/images/logo/footer-logo.png" alt="logo"></a>
                         </div> -->
                         <ul class="gateway-area">
+
                             <li>
-                                <a href="#0"><img src="../assets/images/footer/paypal.png" alt="footer"></a>
+                                <a href="#0"><img  src="{{ asset('cover/'.$products->cover_image) }}" alt="car"></a>
                             </li>
                             <li>
-                                <a href="#0"><img src="../assets/images/footer/visa.png" alt="footer"></a>
+                                <a href="#0"><img src="../../assets/images/footer/visa.png" alt="footer"></a>
                             </li>
                             <li>
-                                <a href="#0"><img src="../assets/images/footer/discover.png" alt="footer"></a>
+                                <a href="#0"><img src="../../assets/images/footer/discover.png" alt="footer"></a>
                             </li>
                             <li>
-                                <a href="#0"><img src="../assets/images/footer/mastercard.png" alt="footer"></a>
+                                <a href="#0"><img src="../../assets/images/footer/mastercard.png" alt="footer"></a>
                             </li>
                         </ul>
                         <div class="copyright">

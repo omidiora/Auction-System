@@ -8,12 +8,17 @@ use App\Models\Product;
 use App\Models\BuyerProduct;
 use App\Models\Category;
 use App\Models\Image;
+use App\Models\User;
+use App\Notifications\SellerNotication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
+use Notification;
+use Illuminate\Notifications\ChannelManager;
 
 class ProductController extends Controller
 {
@@ -90,8 +95,8 @@ class ProductController extends Controller
         if ($request->hasFile('cover_image')) {
             $file = $request->file('cover_image');
             $imageName = time() . '-' . $file->getClientOriginalName();
-            // $file->move(public_path('/cover'), $imageName);
-            Storage::disk('public')->put($imageName, 'adaadfd');
+            $file->move(public_path('/cover/'), $imageName);
+            // Storage::disk('public')->put($imageName, 'adaadfd');
 
 
             $product->cover_image = $imageName;
@@ -106,7 +111,7 @@ class ProductController extends Controller
         if ($files = $request->file('image')) {
             foreach ($files as $file) {
                 $name = $file->hashName();
-                $file->move(storage_path('/fullimage'), $name);
+                $file->move(public_path('/totalimage/'), $name);
                 $images[] = $name;
                 Image::create(array_merge(
                     $formInput,
@@ -293,11 +298,41 @@ class ProductController extends Controller
 
     public function AllProduct()
     {
+        $userSchema = User::first();
         $products = Product::all();
         $bid = DB::table('products')
             ->join('buyers', 'products.id', '=', 'buyers.product_id')->get();
 
+
+
+        // $offerData = [
+        //     'name' => 'BOGO',
+        //     'body' => 'You received an offer.',
+        //     'thanks' => 'Thank you',
+        //     'offerText' => 'Check out the offer',
+        //     'offerUrl' => url('/'),
+        //     'offer_id' => 007
+        // ];
+
+        // Notification::send($userSchema, new SellerNotication($offerData));
+
+
         return view('allproduct', compact('products'));
+    }
+
+
+    public function search(Request $request)
+    {
+        // Get the search value from the request
+        $search = $request->input('search');
+
+        // Search in the title and body columns from the posts table
+        $products = Product::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->get();
+
+        // Return the search view with the resluts compacted
+        return view('search', compact('products'));
     }
 
 
@@ -306,14 +341,40 @@ class ProductController extends Controller
 
     public function SubmitBidPage($id)
     {
-        $MAX_PRICE = DB::table('buyers')->where('product_id', '=', $id)->max('price');
+        $MAX_PRICE = DB::table('buyers')->where('product_id', '=', $id)->max("price");
+        $MAX_PRICE_USER_ID = DB::table('buyers')->where('product_id', '=', $id)->max("user_id");
+
+        $bidders = DB::table('buyers')
+            ->join('users', 'users.id', '=', 'buyers.user_id')
+            ->where('product_id', '=', $id)->get();
+
+
+
+        // dd($bidders);
 
 
 
         // dd($min_id);
         $products = Product::where('id', $id)->first();
+        $remaining_days = Carbon::now()->diffInDays(Carbon::parse($products->ending_date));
+
+        $images = DB::table('products')->where('products.id', $id)
+            ->join('images', 'images.product_id', '=', 'products.uniqueId')->get();
+
         $bids = Product::where('id', $id)->first();
         $count_bidder = Buyer::where('product_id', $id)->count();
-        return view("submitbid", compact("products", 'MAX_PRICE', 'count_bidder'));
+
+
+        return view("submitbid", compact("products", 'MAX_PRICE', 'count_bidder', 'images', 'remaining_days', 'MAX_PRICE_USER_ID', 'bidders'));
+    }
+
+
+
+    public function SoldItem()
+    {
+
+        $products = DB::table('products')->where('products.user_id', Auth::id())
+            ->where('products.ended_bid', '=', 1)->get();
+        return view('seller.Sold', compact('products'));
     }
 }

@@ -149,9 +149,7 @@
                         </li>
                     </ul>
                     <ul class="cart-button-area">
-                        <li>
-                            <a href="#0" class="cart-button"><i class="flaticon-shopping-basket"></i><span class="amount">08</span></a>
-                        </li>
+                       
                         <li>
                             <a href="seller-login.html" class="user-button"><i class="flaticon-user"></i></a>
                         </li>
@@ -167,19 +165,19 @@
                             <a  href="/">Home</a>
                         </li>
                         <li>
-                            <a href="../bidder/product.html">Auction</a>
+                            <a href="{{route("upload")}}">Auction</a>
                         </li>
                         <li>
                             <a href="seller-item-list.html">Sell</a>
                         </li>
                         <li>
-                            <a href="seller-dashboard.html">Dashboard</a>
+                            <a >Dashboard</a>
                             <ul class="submenu">
                                 <li>
                                     <a href="{{route("personalProfile")}}">Personal Profile</a>
                                 </li>
                                 <li>
-                                    <a href="my-bid.html">My Items</a>
+                                    <a href="{{route("myitem")}}">My Items</a>
                                 </li>
                                 <li>
                                     <a href="winning-bids.html">Sold Items</a>

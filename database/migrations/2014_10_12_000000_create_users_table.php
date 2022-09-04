@@ -25,9 +25,13 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('bank_acc')->nullable();
             $table->string('user_type')->default("1");
-            // 0->buyer
             // 1->seller
-            // 2->admin
+            // 2->buyer
+            // 3->admin
+            // 4->block user
+            $table->string('status')->default("2");
+            // 1-blocked
+            // 2->unblocked
             $table->string('bank_name')->nullable();
             $table->string('bank_no')->nullable(); 
             // bank_no-> NUMBER

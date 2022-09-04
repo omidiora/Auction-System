@@ -82,16 +82,16 @@
                             <a href="product.html">Auction</a>
                         </li>
                         <li>
-                            <a href="../seller/seller-item-list.html">Sell</a>
+                            <a href="{{route("upload")}}">Sell</a>
                         </li>
                         <li>
                             <a href="dashboard.html">Dashboard</a>
                             <ul class="submenu">
                                 <li>
-                                    <a href="profile.html">Personal Profile</a>
+                                    <a href="{{route("personalProfile")}}">Personal Profile</a>
                                 </li>
                                 <li>
-                                    <a href="my-bid.html">My Bids</a>
+                                    <a href="{{route("myitem")}}">My Bids</a>
                                 </li>
                                 <li>
                                     <a href="winning-bids.html">Winning Bids</a>
@@ -225,7 +225,7 @@
                 <div class="col-sm-10 col-md-6 col-lg-4">
                     <div class="auction-item-2">
                         <div class="auction-thumb">
-                            <a href="product-details.html"><img src="../../assets/images/auction/car/auction-1.jpg" alt="car"></a>
+                            <a href="product-details.html"><img  src="{{ asset('cover/'.$item->cover_image) }}" alt="car"></a>
                             <a href="#0" class="rating"><i class="far fa-star"></i></a>
                             <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
                         </div>
@@ -265,23 +265,7 @@
     </section>
     <!--============= Featured Auction Section Ends Here =============-->
 
-    <ul class="pagination">
-        <li>
-            <a href="#0"><i class="flaticon-left-arrow"></i></a>
-        </li>
-        <li>
-            <a href="#0">1</a>
-        </li>
-        <li>
-            <a href="#0" class="active">2</a>
-        </li>
-        <li>
-            <a href="#0">3</a>
-        </li>
-        <li>
-            <a href="#0"><i class="flaticon-right-arrow"></i></a>
-        </li>
-    </ul>
+    
     </div>
     </div>
     <!--============= Product Auction Section Ends Here =============-->
@@ -370,7 +354,7 @@
                                     <a href="#0">Auction</a>
                                 </li>
                                 <li>
-                                    <a href="../seller/seller-item-list.html">Sell</a>
+                                    <a href="{{route("upload")}}">Sell</a>
                                 </li>
                                 <li>
                                     <a href="#0">Help</a>
