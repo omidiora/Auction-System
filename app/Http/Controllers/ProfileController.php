@@ -72,24 +72,16 @@ class ProfileController extends Controller
     {
 
 
-        $this->validate(request(), [
-            'name' => 'required',
-            'phone' => 'required',
-            'bank_acc' => 'required',
-            'bank_name' => 'required',
-            'bank_no' => 'required',
-            'delivery_address' => 'required',
+       
 
-
-
-        ]);
+        
         $user = Auth::user();
         $user->name = request('name');
         $user->mobile = request('phone');
-        $user->bank_acc = request('bank_acc');
-        $user->bank_name = request('bank_name');
-        $user->bank_no = request('bank_no');
-        $user->delivery_address = request('delivery_address');
+        $user->bank_acc = request('bank_acc') == '' ? "null" : request('bank_acc');
+        $user->bank_name = request('bank_name') == '' ? "null" : request('bank_name');
+        $user->bank_no = request('bank_no') == '' ? "null" : request('bank_no');
+        $user->delivery_address = request('delivery_address')==''?"null" : request('delivery_address');
 
 
         if ($request->hasFile('profile_picture')) {

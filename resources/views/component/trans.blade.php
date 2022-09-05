@@ -30,7 +30,7 @@
             
                 
                 
-             @if (Auth::id())
+             @if (Auth::id() && Auth::check())
              <li>
                 <a> {{ Auth::user()->name }}  </a>
                 <ul class="submenu">

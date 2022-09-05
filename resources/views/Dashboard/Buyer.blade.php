@@ -155,14 +155,17 @@
                     <div class="dashboard-widget mb-30 mb-lg-0">
                         <div class="user">
                             <div class="thumb-area">
-                                <div class="thumb">
-                                    <img src="../assets/images/dashboard/user.png" alt="user">
-                                </div>
+                                @if (Auth::user()->picture==NULL ||Auth::user()->picture== " ")
+                                <img src="../../assets/images/dashboard/user.png" alt="user">
+                                    
+                                @else
+                                <img src="{{ asset('/profile_picture/'.Auth::user()->picture) }}"  alt="user"  style="width: 100px;height:100px;">  
+                                @endif
                                 <label for="profile-pic" class="profile-pic-edit"><i class="flaticon-pencil"></i></label>
                                 <input type="file" id="profile-pic" class="d-none">
                             </div>
                             <div class="content">
-                                <h5 class="title"><a href="#0">Percy Reed</a></h5>
+                                <h5 class="title"><a href="#0">{{Auth::user()->name}}</a></h5>
                                 <span class="username"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="771d181f1937101a161e1b5914181a">[email&#160;protected]</a></span>
                             </div>
                         </div>

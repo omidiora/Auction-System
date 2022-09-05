@@ -43,23 +43,9 @@
         <div class="header-top">
             <div class="container">
                 <div class="header-top-wrapper">
-                    <ul class="customer-support">
-                        <!-- <li>
-                            <a href="#0" class="mr-3"><i class="fas fa-phone-alt"></i><span class="ml-2 d-none d-sm-inline-block">Customer Support</span></a>
-                        </li> -->
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <select name="language" class="select-bar">
-                                <option value="en">En</option>
-                                <option value="Bn">Yor</option>
-                            </select>
-                        </li>
-                    </ul>
+                   @include('component.trans')
                     <ul class="cart-button-area">
-                        
-                        <li>
-                            <a href="sign-in.html" class="user-button"><i class="flaticon-user"></i></a>
-                        </li>
+                      
                     </ul>
                 </div>
             </div>
@@ -220,39 +206,22 @@
                     <div class="dashboard-widget mb-30 mb-lg-0 sticky-menu">
                         <div class="user">
                             <div class="thumb-area">
-                                <div class="thumb">
-                                    <img src="../assets/images/dashboard/user.png" alt="user">
-                                </div>
+                                @if (Auth::user()->picture==NULL ||Auth::user()->picture== " ")
+                                <img src="../../assets/images/dashboard/user.png" alt="user">
+                                    
+                                @else
+                                <img src="{{ asset('/profile_picture/'.Auth::user()->picture) }}"  alt="user"  style="width: 100px;height:100px;">  
+                                @endif
                                 <label for="profile-pic" class="profile-pic-edit"><i class="flaticon-pencil"></i></label>
                                 <input type="file" id="profile-pic" class="d-none">
                             </div>
                             <div class="content">
-                                <h5 class="title"><a href="#0">Percy Reed</a></h5>
+                                <h5 class="title"><a href="#0">{{Auth::user()->name}}</a></h5>
                                 <span class="username"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="9ff5f0f7f1dff8f2fef6f3b1fcf0f2">[email&#160;protected]</a></span>
                             </div>
                         </div>
                         <ul class="dashboard-menu">
-                            <li>
-                                <a href="dashboard.html"><i class="flaticon-dashboard"></i>Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="{{route("personalProfile")}}"><i class="flaticon-settings"></i>Personal Profile </a>
-                            </li>
-                            <li>
-                                <a href="{{route("myitem")}}"><i class="flaticon-auction"></i>My Bids</a>
-                            </li>
-                            <li>
-                                <a href="#0" class="active"><i class="flaticon-best-seller"></i>Winning Bids</a>
-                            </li>
-                            <li>
-                                <a href="notifications.html"><i class="flaticon-alarm"></i>Notification</a>
-                            </li>
-                            <!-- <li>
-                                <a href="my-favorites.html"><i class="flaticon-star"></i>My Favorites</a>
-                            </li> -->
-                            <!-- <li>
-                                <a href="referral.html"><i class="flaticon-shake-hand"></i>Referrals</a>
-                            </li> -->
+                           @include('component.BuyerSidebar')
                         </ul>
                     </div>
                 </div>

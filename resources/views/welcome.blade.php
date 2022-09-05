@@ -179,7 +179,7 @@
                         </div>
                         <div class="title-area">
                             <h2 class="title">{{ __('messages.category1') }}</h2>
-                            <p>{{ __('messages.subText1') }}}</p>
+                            <p>{{ __('messages.subText1') }}</p>
                         </div>
                     </div>
                     <a href="{{route("all")}}" class="normal-button">View All</a>

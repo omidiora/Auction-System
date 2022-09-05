@@ -97,9 +97,7 @@
                     </div>
                 </div>
                 <div class="single-product-item">
-                    <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop02.jpg" alt="shop"></a>
-                    </div>
+                   
                     <div class="content">
                         <h4 class="title"><a href="#0">Water Pot</a></h4>
                         <div class="price"><span class="pprice">$80.00</span> <del class="dprice">$120.00</del></div>
@@ -160,14 +158,17 @@
                     <div class="dashboard-widget mb-30 mb-lg-0 sticky-menu">
                         <div class="user">
                             <div class="thumb-area">
-                                <div class="thumb">
-                                    <img src="../assets/images/dashboard/user.png" alt="user">
-                                </div>
+                                @if (Auth::user()->picture==NULL ||Auth::user()->picture== " ")
+                                <img src="../../assets/images/dashboard/user.png" alt="user">
+                                    
+                                @else
+                                <img src="{{ asset('/profile_picture/'.Auth::user()->picture) }}"  alt="user"  style="width: 100px;height:100px;">  
+                                @endif
                                 <label for="profile-pic" class="profile-pic-edit"><i class="flaticon-pencil"></i></label>
                                 <input type="file" id="profile-pic" class="d-none">
                             </div>
                             <div class="content">
-                                <h5 class="title"><a href="#0">Percy Reed</a></h5>
+                                <h5 class="title"><a href="#0">{{Auth::user()->name}}</a></h5>
                                 <span class="username"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="254f4a4d4b654248444c490b464a48">[email&#160;protected]</a></span>
                             </div>
                         </div>
@@ -212,8 +213,8 @@
                 <div class="auction-item-2">
                     <div class="auction-thumb">
                         
-                        <a >
-                            <img src="/cover/{{$item->cover_image}}" style="height: 200px;width:900px" alt="logo">
+                        <a href="/product/bid/{{$item->product_id}}">
+                            <img src="/cover/{{$item->cover_image}}" style="height: 200px;width:900px" alt="logo" />
                             {{-- <img src="/assets/images/logo/logo2.png" alt="logo"> 
                             <img  src="{{ asset('./cover/'.$item->cover_image) }}" alt="car"></a> --}}
                         <a href="#0" class="rating"><i class="far fa-star"></i></a>

@@ -18,38 +18,54 @@ class BuyerController extends Controller
 
     public function SubmitBidFinally(Request $request)
     {
-        if (Auth::check()) {
-            $data = new Buyer;
 
 
-            $request->validate([
-                'price' => 'required',
-                'product_id' => 'required',
-                'product_id' => 'required',
-            ]);
 
-            $data->product_id = $request->product_id;
-            $data->price = $request->price;
-            $data->name = $request->name;
-            $data->user_id = Auth::id();
-            $data->save();
+        $bids = Buyer::where('buyers.user_id', '=', Auth::id())->where('buyers.product_id', "=", $request->product_id)->get();
+
+        if (count($bids) == 0) {
+
+            if (Auth::check()) {
+                $data = new Buyer;
 
 
-            $userSchema = User::first();
-            $offerData = [
-                'name' => Auth::user()->name,
-                'body' => Auth::user()->name . ' ' . 'has bid bidded an amount of ' . $request->price,
-                'thanks' => 'Thank you',
-                'offerText' => 'Check out the offer',
-                'offerUrl' => url('/'),
-                'offer_id' => 007
-            ];
+                $request->validate([
+                    'price' => 'required',
+                    'product_id' => 'required',
+                    'product_id' => 'required',
+                ]);
 
-            Notification::send($userSchema, new SellerNotication($offerData));
+                $data->product_id = $request->product_id;
+                $data->price = $request->price;
+                $data->name = $request->name;
+                $data->user_id = Auth::id();
+                $data->save();
 
-            // return rediret()->back();
 
-            //     Product::create($input);
+                $userSchema = User::first();
+                $offerData = [
+                    'name' => Auth::user()->name,
+                    'body' => Auth::user()->name . ' ' . 'has bid bidded an amount of ' . $request->price,
+                    'thanks' => 'Thank you',
+                    'offerText' => 'Check out the offer',
+                    'offerUrl' => url('/'),
+                    'offer_id' => 007
+                ];
+
+                Notification::send($userSchema, new SellerNotication($offerData));
+
+                // return rediret()->back();
+
+                //     Product::create($input);
+                return back()->with('success', 'Your bid is successfully!. Go to the dashboard');
+            }
+            // user doesn't exist
+
+        } else {
+
+            $bids = Buyer::where('buyers.user_id', '=', Auth::id())->where('buyers.product_id', "=", $request->product_id)->get()->first();
+            $bids->price = $request->price;
+            $bids->save();
             return back()->with('success', 'Your bid is successfully!. Go to the dashboard');
         }
     }
@@ -92,12 +108,15 @@ class BuyerController extends Controller
 
 
         $MyBids  = DB::table('products')
-            ->join('buyers', 'buyers.user_id', '=',  'products.user_id')->get();
+            ->join('buyers',  'buyers.product_id', '=', 'products.id')->where('buyers.user_id',  Auth::id())->get();
 
-        
-        
 
-    
+
+
+
+
+
+
 
         return view("buyer.MyBid", compact('MyBids'));
     }

@@ -39,9 +39,10 @@ class DashboardController extends Controller
             
 
         $bids = DB::table('products')
-            ->join('buyers', 'products.user_id', '=', 'buyers.user_id')
+            ->join('buyers', 'products.id', '=', 'buyers.product_id')
             ->where('buyers.user_id', Auth::id())
             ->get();
+
 
            
         $itemWon = DB::table('products')

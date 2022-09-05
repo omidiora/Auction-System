@@ -237,7 +237,7 @@
                             <label for="dob" class="col-md-4 col-form-label text-md-end">{{ __('messages.dob') }}</label>
 
                             <div class="col-md-6">
-                                <input id="dob" type="dob" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}"  autocomplete="dob">
+                                <input id="dob" type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}"  autocomplete="dob">
 
                                 @error('dob')
                                     <span class="invalid-feedback" role="alert">
@@ -281,41 +281,6 @@
                             </div>
                         </div>
 
-
-
-                        <div class="row mb-3">
-                            <label for="picture" class="col-md-4 col-form-label text-md-end">{{ __('picture') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="picture" type="picture" class="form-control @error('picture') is-invalid @enderror" name="picture" value="{{ old('picture') }}"  autocomplete="picture">
-
-                                @error('picture')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="row mb-3">
-                            <label for="bank_acc" class="col-md-4 col-form-label text-md-end">{{ __('Bank Account.') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="bank_acc" type="bank_acc" class="form-control @error('bank_acc') is-invalid @enderror" name="bank_acc" value="{{ old('bank_acc') }}"  autocomplete="bank_acc">
-
-                                @error('bank_acc')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-                        {{-- BankName --}}
-
-                        
                         <div class="row mb-3">
                             <label for="bank_name" class="col-md-4 col-form-label text-md-end">{{ __('messages.BankName') }}</label>
 
@@ -329,7 +294,6 @@
                                 @enderror
                             </div>
                         </div>
-
 
 
                         <div class="row mb-3">
@@ -349,6 +313,30 @@
 
                         
                         
+                        
+
+
+
+                        <div class="row mb-3">
+                            <label for="bank_acc" class="col-md-4 col-form-label text-md-end">{{ __('Account Name') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="bank_acc" type="bank_acc" class="form-control @error('bank_acc') is-invalid @enderror" name="bank_acc" value="{{ old('bank_acc') }}"  autocomplete="bank_acc">
+
+                                @error('bank_acc')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        {{-- BankName --}}
+
+                        
+                      
+
+
+
                         
                         
 

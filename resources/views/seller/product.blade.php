@@ -292,7 +292,8 @@
                                 <div class="col-md-6">
                                     <select  name="category" class="form-control" id="" style="font-size: 1em;">
                                 @foreach ($categories as $item)
-                                    <option value="{{$item->id}}">{{$item->category}}</option>
+                                    <option value="{{$item->id  }}">{{$item->category}}</option>
+                                    
                                 @endforeach
                             </select>
                                     {{-- <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="product_name" value="{{ old('email') }}" > --}}

@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buyer;
+use App\Models\Product;
 use App\Models\Seller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class SellerController extends Controller
@@ -14,16 +18,14 @@ class SellerController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function registration(){
-    
-    
+    public function registration()
+    {
+
+
         return view('seller.registration');
     }
     public function index()
     {
-               
-
-        
     }
 
     /**
@@ -35,7 +37,6 @@ class SellerController extends Controller
     {
         //
         return view('seller-item');
-
     }
 
     /**
@@ -47,8 +48,8 @@ class SellerController extends Controller
     public function store(Request $request)
     {
         //
-     
-       
+
+
 
     }
 
@@ -95,5 +96,38 @@ class SellerController extends Controller
     public function destroy(Seller $seller)
     {
         //
+    }
+
+
+    public function MyItemDetails($id)
+    {
+
+        $MAX_PRICE = DB::table('buyers')->where('product_id', '=', $id)->max("price");
+        $MAX_PRICE_USER_ID = DB::table('buyers')->where('product_id', '=', $id)->max("user_id");
+
+        $bidders = DB::table('buyers')
+            ->join('users', 'users.id', '=', 'buyers.user_id')
+            ->where('product_id', '=', $id)->get();
+
+
+
+        // dd($bidders);
+
+
+
+        // dd($min_id);
+        $products = Product::where('id', $id)->first();
+        $remaining_days = Carbon::now()->diffInDays(Carbon::parse($products->ending_date));
+
+        $images = DB::table('products')->where('products.id', $id)
+            ->join('images', 'images.product_id', '=', 'products.uniqueId')->get();
+
+        $bids = Product::where('id', $id)->first();
+        $count_bidder = Buyer::where('product_id', $id)->count();
+
+
+        return view("MyItemDetails", compact("products", 'MAX_PRICE', 'count_bidder', 'images', 'remaining_days', 'MAX_PRICE_USER_ID', 'bidders'));
+
+        
     }
 }

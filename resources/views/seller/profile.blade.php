@@ -155,21 +155,17 @@
                     <div class="dashboard-widget mb-30 mb-lg-0 sticky-menu">
                         <div class="user">
                             <div class="thumb-area">
-                                <div class="thumb">
-                                    {{--   src="{{ asset('/cover/'.$item->cover_image) }}"  --}}
-                                  @if (Auth::user()->picture==NULL ||Auth::user()->picture== " ")
-                                  <img src="../../assets/images/dashboard/user.png" alt="user">
-                                      
-                                  @else
-                                  <img src="{{ asset('/profile_picture/'.Auth::user()->picture) }}"  alt="user"> 
-                                  @endif
-                                 
-                                </div>
+                                @if (Auth::user()->picture==NULL ||Auth::user()->picture== " ")
+                                <img src="../../assets/images/dashboard/user.png" alt="user">
+                                    
+                                @else
+                                <img src="{{ asset('/profile_picture/'.Auth::user()->picture) }}"  alt="user"  style="width: 100px;height:100px;">  
+                                @endif
                                 <label for="profile-pic" class="profile-pic-edit"><i class="flaticon-pencil"></i></label>
                                 <input type="file" id="profile-pic" class="d-none">
                             </div>
                             <div class="content">
-                                <h5 class="title"><a href="#0">Percy Reed</a></h5>
+                                <h5 class="title"><a href="#0">{{Auth::user()->name}}</a></h5>
                                 <span class="username"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f993969197b99e94989095d79a9694">[email&#160;protected]</a></span>
                             </div>
                         </div>
@@ -253,9 +249,8 @@
                                 <ul class="dash-pro-body">
                                     <li>
                                         <div class="info-name">
-                                            {{ __('messages.Address') }}
-                                            Address</div>
-                                        <div class="info-value">{{$users->address}}</div>
+                                            {{ __('messages.Address') }}</div>
+                                        <div class="info-value">{{$users->delivery_address}}</div>
                                     </li>
                                 </ul>
                             </div>

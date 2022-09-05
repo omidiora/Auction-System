@@ -23,6 +23,7 @@ Route::group(['prefix' => 'seller'], function () {
     Route::get('profile', [App\Http\Controllers\ProfileController::class, 'index'])->name("personalProfile");
     Route::get('item', [App\Http\Controllers\ProfileController::class, 'MyItem'])->name("myitem");
     Route::get('seller-registraton', [App\Http\Controllers\SellerController::class, 'registration'])->name("seller-registration");
+    Route::get('details/{id}', [App\Http\Controllers\SellerController::class, 'MyItemDetails'])->name("myItemDetails");
     // Route::get('sell-item', [App\Http\Controllers\SellerController::class, 'create'])->name('sell-item');
     // Route::post('sell-item', [App\Http\Controllers\SellerController::class, 'index'])->name('sell-item');
 
@@ -193,6 +194,12 @@ Route::get('/rave/callback', [FlutterwaveController::class, 'callback'])->name('
 //     \App\Models\Category::create([
 
 //         "category"=>"Jewelry",
+
+//     ]);
+
+//     \App\Models\Category::create([
+
+//         "category"=>"Accessories",
 
 //     ]);
 

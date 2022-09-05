@@ -154,7 +154,7 @@
                <div class="col-sm-10 col-md-6 col-lg-4">
                    <div class="auction-item-2">
                        <div class="auction-thumb">
-                           <a href="product-details.html"><img  src="{{ asset('/cover/'.$item->cover_image) }}"
+                           <a href="/seller/details/1"><img  src="{{ asset('/cover/'.$item->cover_image) }}"
                                style="height:200px;width:200px"
                                
                                alt="car"></a>

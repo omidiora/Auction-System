@@ -155,9 +155,12 @@
                     <div class="dashboard-widget mb-30 mb-lg-0 sticky-menu">
                         <div class="user">
                             <div class="thumb-area">
-                                <div class="thumb">
-                                    <img src="../../assets/images/dashboard/user.png" alt="user">
-                                </div>
+                                @if (Auth::user()->picture==NULL ||Auth::user()->picture== " ")
+                                <img src="../../assets/images/dashboard/user.png" alt="user">
+                                    
+                                @else
+                                <img src="{{ asset('/profile_picture/'.Auth::user()->picture) }}"  alt="user"  style="width: 100px;height:100px;">  
+                                @endif
                                <form method="POST" action="{{route('updatePicture')}}" enctype="multipart/form-data">
                                 @csrf
                                 <label for="profile_pic" class="profile-pic-edit"><i class="flaticon-pencil"></i></label>
@@ -165,7 +168,7 @@
                                </form>
                             </div>
                             <div class="content">
-                                <h5 class="title"><a href="#0">Percy Reed</a></h5>
+                                <h5 class="title"><a href="#0">{{Auth::user()->name}}</a></h5>
                                 <span class="username"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f993969197b99e94989095d79a9694">[email&#160;protected]</a></span>
                             </div>
                         </div>
@@ -183,7 +186,7 @@
                                
                                 <div class="header">
                                     <h4 class="title">{{ __('messages.PD') }}</h4>
-                                    <span class="edit"><i class="flaticon-edit"></i> Edit</span>
+                                    <a href="/profile/edit"> <span class="edit"><i class="flaticon-edit"></i> Edit</span></a>
                                 </div>
                               
                                 <ul class="dash-pro-body">

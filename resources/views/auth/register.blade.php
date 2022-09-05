@@ -143,8 +143,8 @@
             <div class="account-wrapper mt--100 mt-lg--440">
                 <div class="left-side">
                     <div class="section-header">
-                        <h2 class="title">{{ __('messages.RegBuyer-1') }}</h2>
-                        {{-- <p>We're happy you're here!</p> --}
+                        <h2 class="title">{{ __('messages.RegBuyer') }}</h2>
+                        {{-- <p>We're happy you're here!</p> --}}
                     </div>
                     <!-- <ul class="login-with">
                         <li>

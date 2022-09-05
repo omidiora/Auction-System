@@ -259,57 +259,7 @@
                                 <h5 class="info">$50.00</h5>
                             </li> -->
                         </ul>
-                        <div class="product-bid-area">
-                            @if ($products->ended_bid==1 && $MAX_PRICE_USER_ID==Auth::id())
-
-                            <div class="text-center">
-                                {{-- <a class="custom-button">
-                                    Pay
-                                </a> --}}
-
-                                <form method="POST" action="{{ route('pay') }}" id="paymentForm">
-                                    {{ csrf_field() }}
-                                    <input type="hidden" name="amount" value="{{$MAX_PRICE}}" /> 
-                                    <input type="hidden" name="description" value="{{$products->description}}" />
-                                    <input type="hidden" name="email" value="{{Auth::user()->email}}" /> 
-                                    <button class="custom-button" type="submit">
-                                        Pay
-                                    </button> 
-
-                                </form>
-                               
-                            </div>
-                                
-                            @else
-                            <form class="product-bid-form" method="POST" action="{{route('SubmitBidPage')}}">
-                                @csrf
-                               
-                                <input type="hidden" name="user_id"value={{$products->user_id}}>
-                                <input type="hidden" name="name"value={{$products->name}}>
-                                <input type="hidden" name="product_id" value={{$products->id}}>
-
-                                @if ($products->ended_bid !== "1")
-                                <input type="text" placeholder="Enter your bid amount" name="price">
-                                <button class="custom-button">Submit a bid</button>
-                                @else
-                                     <h6 style="margin-left:130px;margin-top:10px;color:red">Bid has ended</h6>
-                                @endif
-                               
-
-                                <div>
-                                    @foreach ($errors->all() as $error)
-                                    <p style="color:red;margin-left:70px">{{ $error }}</p>
-                                @endforeach
-                                </div>
-                                
-                              
-   
-
-
-                            </form>
-                            @endif
-                          
-                        </div>
+                        
                         <!-- <div class="buy-now-area">
                             <a href="#0" class="custom-button">Buy Now: $4,200</a>
                             <a href="#0" class="rating custom-button active border"><i class="fas fa-star"></i> Add to Wishlist</a>
@@ -592,7 +542,7 @@
                             <h5 class="cate">Subscribe to Sbidu</h5>
                             <h3 class="title">To Get Exclusive Benefits</h3>
                         </div>
-                        <form class="subscribe-form">
+                        <form class="subscribe-form
                             <input type="text" placeholder="Enter Your Email" name="email">
                             <button type="submit" class="custom-button">Subscribe</button>
                         </form>

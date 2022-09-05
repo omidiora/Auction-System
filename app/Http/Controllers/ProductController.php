@@ -78,6 +78,7 @@ class ProductController extends Controller
 
         $product = new Product();
         $product->name = $request->name;
+        $product->category_name = '1';
         $product->condition = $request->condition;
         $product->description = $request->description;
         $product->price = $request->price;
@@ -356,7 +357,17 @@ class ProductController extends Controller
 
         // dd($min_id);
         $products = Product::where('id', $id)->first();
-        $remaining_days = Carbon::now()->diffInDays(Carbon::parse($products->ending_date));
+        $days = Carbon::now()->diffInDays(Carbon::parse($products->ending_date), false);
+
+        $remaining_days = $days <= 0 ? 0 : $days;
+
+
+
+
+        // $remaining_days = Carbon::parse($products->ending_date)->diffInDays(Carbon::now(),false);
+
+        
+
 
         $images = DB::table('products')->where('products.id', $id)
             ->join('images', 'images.product_id', '=', 'products.uniqueId')->get();

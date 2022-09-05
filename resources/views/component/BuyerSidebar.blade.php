@@ -16,6 +16,10 @@
     <a href="{{route("Index")}}"><i class="flaticon-best-seller"></i>
         {{ __('messages.winbid') }}</a>
 </li>
+<li>
+    <a href="{{route("SellerNotify")}}"><i class="flaticon-best-seller"></i>
+        {{ __('nofication') }}</a>
+</li>
 {{-- <li>
     <a href="notifications.html"><i class="flaticon-alarm"></i>Notification</a>
 </li> --}}
