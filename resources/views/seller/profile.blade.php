@@ -156,7 +156,14 @@
                         <div class="user">
                             <div class="thumb-area">
                                 <div class="thumb">
-                                    <img src="../../assets/images/dashboard/user.png" alt="user">
+                                    {{--   src="{{ asset('/cover/'.$item->cover_image) }}"  --}}
+                                  @if (Auth::user()->picture==NULL ||Auth::user()->picture== " ")
+                                  <img src="../../assets/images/dashboard/user.png" alt="user">
+                                      
+                                  @else
+                                  <img src="{{ asset('/profile_picture/'.Auth::user()->picture) }}"  alt="user"> 
+                                  @endif
+                                 
                                 </div>
                                 <label for="profile-pic" class="profile-pic-edit"><i class="flaticon-pencil"></i></label>
                                 <input type="file" id="profile-pic" class="d-none">
@@ -180,7 +187,7 @@
                                
                                 <div class="header">
                                     <h4 class="title">{{ __('messages.PD') }}</h4>
-                                    <span class="edit"><i class="flaticon-edit"></i> Edit</span>
+                                   <a href="/profile/edit"> <span class="edit"><i class="flaticon-edit"></i> Edit</span></a>
                                 </div>
                               
                                 <ul class="dash-pro-body">

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Multilingual Online Auction System</title>
+    <title>Sbidu - Bid And Auction HTML Template</title>
 
     <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../assets/css/all.min.css">
@@ -19,11 +19,6 @@
     <link rel="stylesheet" href="../../assets/css/main.css">
 
     <link rel="shortcut icon" href="../../assets/images/favicon.png" type="image/x-icon">
-    <style>
-        .auction-item-2 .auction-content .bid-area .bid-amount::before {
-            background: inherit;
-        }
-    </style>
 </head>
 
 <body>
@@ -44,19 +39,32 @@
             <div class="container">
                 <div class="header-top-wrapper">
                     @include('component.trans')
+                  
                 </div>
-        </div>
+            </div>
         </div>
         <div class="header-bottom">
-            <div class="container">
+            <div class="container" style="display: flex; justify-content: center;">
                 <div class="header-wrapper">
                     <!-- <div class="logo">
                         <a href="index.html">
                             <img src="assets/images/logo/logo.png" alt="logo">
                         </a>
                     </div> -->
-                @include('component.header')
-                    
+                    @include('component.header')
+                    <!-- <form class="search-form">
+                        <input type="text" placeholder="Search for products....">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form> -->
+                    <div class="search-bar d-md-none">
+                        <a href="#0"><i class="fas fa-search"></i></a>
+                    </div>
+                    <div class="header-bar d-lg-none">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -139,70 +147,185 @@
     <!--============= Hero Section Ends Here =============-->
 
 
-    <!--============= Featured Auction Section Starts Here =============-->
-    <section class="featured-auction-section padding-bottom mt--240 mt-lg--440 pos-rel">
+    <!--============= Dashboard Section Starts Here =============-->
+    <section class="account-section padding-bottom">
         <div class="container">
-            <div class="section-header cl-white mw-100 left-style">
-                {{-- bidon --}}
-                <h3 class="title">{{ __('messages.bidon') }}</h3>
-            </div>
-            <div class="row justify-content-center mb-30-none">
-               @if (count($categories)==0)
+            <div class="account-wrapper mt--100 mt-lg--440">
+                <div class="left-side" style="width: 100%;">
+                    <div class="section-header">
+                        <h3 class="title">Edit Profile</h3>
 
-               @else
-               @foreach ($categories as $item)
-               <div class="col-sm-10 col-md-6 col-lg-4">
-                   <div class="auction-item-2">
-                       <div class="auction-thumb">
-                           <a href="product-details.html"><img  src="{{ asset('/cover/'.$item->cover_image) }}"
-                               style="height:200px;width:200px"
-                               
-                               alt="car"></a>
-                           <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                           <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
-                       </div>
-                       <div class="auction-content">
-                           <h6 class="title">
-                               <a href="#0">{{$item->name}}</a>
-                           </h6>
-                           <div class="bid-area">
-                               <div class="bid-amount" style="width: 100%;">
-                                   <div class="icon">
-                                       <i class="flaticon-auction"></i>
-                                   </div>
-                                   <div class="amount-content">
-                                       <div class="current">Price</div>
-                                       <div class="amount">&#x20A6;{{$item->price}}</div>
-                                   </div>
-                               </div>
-                           </div>
-                           {{-- <div class="countdown-area">
-                               <div class="countdown">
-                                   <div id="bid_counter26"></div>
-                               </div>
-                               <span class="total-bids">30 Bids</span>
-                           </div> --}}
-                           <div class="text-center">
-                               <a href="/product/bid/{{$item->id}}" class="custom-button">Submit a bid</a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
+                        @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                        
+                        @if ($errors->any())
+                        @foreach ($errors->all() as $error)
+                            <div>{{$error}}</div>
+                        @endforeach
+                    @endif
+                       
+                    </div>
+                    <div class="card-body">
+
+                 
                    
-               @endforeach
-              
-                   
-               @endif
-              
+                        <form method="POST" action="{{route("updatePicture")}}" enctype="multipart/form-data">
+                            @csrf
+    
+                            <div class="row mb-3">
+                                <label for="Name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{Auth::user()->name}}" >
+    
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('phone') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{Auth::user()->mobile}}" >
+    
+                                    @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-3">
+                                <label for="profile_picture" class="col-md-4 col-form-label text-md-end">{{ __('messages.profile_picture') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="profile_picture" type="file" class="form-control @error('profile_picture') is-invalid @enderror" name="profile_picture" value="{{Auth::user()->profile_picture}}"  autocomplete="profile_picture">
+    
+                                    @error('profile_picture')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            
+
+
+
+                            
+
+                            @if (Auth::user()->user_type==1)
+
+                            <div class="row mb-3">
+                                <label for="bank_acc" class="col-md-4 col-form-label text-md-end">{{ __('Bank Account.') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="bank_acc" type="bank_acc" class="form-control @error('bank_acc') is-invalid @enderror" name="bank_acc" value="{{Auth::user()->bank_acc}}"  autocomplete="bank_acc">
+    
+                                    @error('bank_acc')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            {{-- BankName --}}
+    
+                            
+                            <div class="row mb-3">
+                                <label for="bank_name" class="col-md-4 col-form-label text-md-end">{{ __('messages.BankName') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="bank_name" type="text" class="form-control @error('bank_name') is-invalid @enderror" name="bank_name" value="{{Auth::user()->bank_name}}"  autocomplete="bank_name">
+    
+                                    @error('bank_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+
+                            <div class="row mb-3">
+                                <label for="bank_no" class="col-md-4 col-form-label text-md-end">{{ __('messages.AccountNumber') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="bank_no" type="text" class="form-control @error('bank_no') is-invalid @enderror" name="bank_no" value="{{Auth::user()->bank_no}}"  autocomplete="bank_no">
+    
+                                    @error('bank_no')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+    
+    
+    
+                          
+    
+    
+    
+    
+                            <div class="row mb-3">
+                                <label for="delivery_address" class="col-md-4 col-form-label text-md-end">{{ __('messages.DeliveryAddress') }}</label>
+    
+                                <div class="col-md-6">
+                                    <input id="delivery_address" type="delivery_address" class="form-control @error('delivery_address') is-invalid @enderror" name="delivery_address" 
+                                    value="{{Auth::user()->delivery_address}}"
+                                    autocomplete="delivery_address">
+    
+                                    @error('delivery_address')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+    
+                                
+                            @else
+                                
+                            @endif
+                         
+
+
+
+                     
+                          
+    
+                          
+                        
+    
+                            <div class="row mb-0">
+                                <div class="col-md-4 offset-md-5">
+                                    <button type="submit" class="btn btn-primary">
+                                        {{ __('Update Profile') }}
+                                    </button>
+    
+                                   
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
-    <!--============= Featured Auction Section Ends Here =============-->
-
-    
-    </div>
-    </div>
-    <!--============= Product Auction Section Ends Here =============-->
+    <!--============= Dashboard Section Ends Here =============-->
 
 
     <!--============= Footer Section Starts Here =============-->
@@ -230,9 +353,9 @@
                 <img src="../../assets/images/footer/c4.png" alt="footer">
             </div>
         </div>
-        <div class="newslater-wrapper">
+        <!-- <div class="newslater-wrapper">
             <div class="container">
-                <!-- <div class="newslater-area">
+                <div class="newslater-area">
                     <div class="newslater-thumb">
                         <img src="assets/images/footer/newslater.png" alt="footer">
                     </div>
@@ -246,111 +369,14 @@
                             <button type="submit" class="custom-button">Subscribe</button>
                         </form>
                     </div>
-                </div> -->
+                </div>
             </div>
-        </div>
+        </div> -->
         <div class="footer-top padding-bottom padding-top">
             <div class="container">
                 <div class="row mb--60">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-widget widget-links">
-                            <h5 class="title" style="color: #693ff5;">Auction Categories</h5>
-                            <ul class="links-list">
-                                <li>
-                                    <a href="#0" style="color: #693ff5;">Books</a>
-                                </li>
-                                <li>
-                                    <a  style="color: #693ff5;">Clothes</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Watches</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Electronics</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Jewelry</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Sports</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-widget widget-links">
-                            <h5 class="title">About Us</h5>
-                            <ul class="links-list">
-                                <li>
-                                    <a href="#0">About Multilingual Online Auction System</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Auction</a>
-                                </li>
-                                <li>
-                                    <a href="{{route("upload")}}">Sell</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Help</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-widget widget-links">
-                            <h5 class="title">We're Here to Help</h5>
-                            <ul class="links-list">
-                                <li>
-                                    <a href="#0">Your Account</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Safe and Secure</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Shipping Information</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Contact Us</a>
-                                </li>
-                                <li>
-                                    <a href="#0">Help & FAQ</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="footer-widget widget-follow">
-                            <h5 class="title">Follow Us</h5>
-                            <ul class="links-list">
-                                <li>
-                                    <a href="#0"><i class="fas fa-phone-alt"></i>+2348132933439</a>
-                                </li>
-                                <!-- <li>
-                                    <a href="#0"><i class="fas fa-blender-phone"></i>+2348132933439</a>
-                                </li> -->
-                                <li>
-                                    <a href="#0"><i class="fas fa-envelope-open-text"></i><span class="__cf_email__" data-cfemail="254d40495565404b424a514d4048400b464a48">[email&#160;protected]</span></a>
-                                </li>
-                                <li>
-                                    <a href="#0"><i class="fas fa-location-arrow"></i>UNIOSUN</a>
-                                </li>
-                            </ul>
-                            <ul class="social-icons">
-                                <li>
-                                    <a href="#0" class="active"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#0"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#0"><i class="fab fa-instagram"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#0"><i class="fab fa-linkedin-in"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    
+                    
                 </div>
             </div>
         </div>
@@ -403,5 +429,23 @@
     <script src="../../assets/js/jquery-ui.min.js"></script>
     <script src="../../assets/js/main.js"></script>
 </body>
+
+<script type="text/javascript">
+
+  
+
+    var url = "{{ route('changeLang') }}";
+
+  
+
+    $(".changeLang").change(function(){
+
+        window.location.href = url + "?lang="+ $(this).val();
+
+    });
+
+  
+
+</script>
 
 </html>

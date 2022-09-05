@@ -43,26 +43,8 @@
         <div class="header-top">
             <div class="container">
                 <div class="header-top-wrapper">
-                    <ul class="customer-support">
-                        <!-- <li>
-                            <a href="#0" class="mr-3"><i class="fas fa-phone-alt"></i><span class="ml-2 d-none d-sm-inline-block">Customer Support</span></a>
-                        </li> -->
-                        <li>
-                            <i class="fas fa-globe"></i>
-                            <select name="language" class="select-bar">
-                                <option value="en">En</option>
-                                <option value="Bn">Yor</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <ul class="cart-button-area">
-                        <li>
-                            <a href="#0" class="cart-button"><i class="flaticon-shopping-basket"></i><span class="amount">08</span></a>
-                        </li>
-                        <li>
-                            <a href="seller-login.html" class="user-button"><i class="flaticon-user"></i></a>
-                        </li>
-                    </ul>
+                    @include('component.trans')
+                   
                 </div>
             </div>
         </div>
@@ -190,34 +172,14 @@
                             </div>
                         </div>
                         <ul class="dashboard-menu">
-                            <li>
-                                <a href="{{route("SellerDashboard")}}"><i class="flaticon-dashboard"></i>Dashboard</a>
-                            </li>
-                            <li>
-                                <a href="{{route("personalProfile")}}"><i class="flaticon-settings"></i>Personal Profile </a>
-                            </li>
-                            <li>
-                                <a href="{{route("myitem")}}" class="active"><i class="flaticon-auction"></i>My Items</a>
-                            </li>
-                            <li>
-                                <a href="{{route('SoldItem')}}"><i class="flaticon-best-seller"></i>Sold Items</a>
-                            </li>
-                            <li>
-                                <a href="{{route("SellerNotify")}}"><i class="flaticon-alarm"></i>Notification</a>
-                            </li>
-                            <!-- <li>
-                                <a href="my-favorites.html"><i class="flaticon-star"></i>My Favorites</a>
-                            </li> -->
-                            <!-- <li>
-                                <a href="referral.html"><i class="flaticon-shake-hand"></i>Referrals</a>
-                            </li> -->
+                         @include('component.SellerSidebar')
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="dash-bid-item dashboard-widget mb-40-60">
                         <div class="header">
-                            <h4 class="title">My Items</h4>
+                            <h4 class="title">{{ __('messages.my_item') }}</h4>
                             <!-- <span class="notify"><i class="flaticon-alarm"></i> Manage Notifications</span> -->
                         </div>
                         <!-- <ul class="button-area nav nav-tabs">
@@ -234,7 +196,7 @@
                           
                             <div class="auction-item-2">
                                 <div class="auction-thumb">
-                                    <a href="selling-item-details.html"><img src="../assets/images/auction/car/auction-1.jpg" alt="car"></a>
+                                    <a ><img  src="{{ asset('/cover/'.$item->cover_image) }}" alt="car"></a>
                                     <a href="#0" class="rating"><i class="far fa-star"></i></a>
                                     <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
                                 </div>
@@ -505,5 +467,27 @@
     <script src="../assets/js/jquery-ui.min.js"></script>
     <script src="../assets/js/main.js"></script>
 </body>
+
+
+
+
+<script type="text/javascript">
+
+  
+
+    var url = "{{ route('changeLang') }}";
+
+  
+
+    $(".changeLang").change(function(){
+
+        window.location.href = url + "?lang="+ $(this).val();
+
+    });
+
+  
+
+</script>
+
 
 </html>

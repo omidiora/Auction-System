@@ -1,8 +1,11 @@
+
+    <li>
+        <a  href="{{route("BuyerDashboard")}}"><i class="flaticon-dashboard"></i> {{ __('messages.Dashboard') }}</a>
+    </li>
+
+
 <li>
-    <a href="#0" class="active"><i class="flaticon-dashboard"></i>{{ __('messages.Dashboard') }}</a>
-</li>
-<li>
-    <a  href="{{route("personalProfile")}}"><i class="flaticon-settings"></i> {{ __('messages.Personal_Profile') }}</a>
+    <a  href="{{route("BuyerpersonalProfile")}}"><i class="flaticon-settings"></i> {{ __('messages.Personal_Profile') }}</a>
 </li>
 <li>
     <a href="{{route("MyBidItem")}}"><i class="flaticon-auction"></i>

@@ -25,21 +25,25 @@ return [
     "DeliveryAddress" => "Delivery Address",
     "BankName" => "Bank Name",
     "AccountNumber" => "Account Number",
-    "AccountName"=>"Account Name",
+    "AccountName" => "Account Name",
     "password" => "Password",
     "ConfirmPassword" => "Confirm Password",
     "ALREADYHAVEANACCOUNT" => "ALREADY HAVE AN ACCOUNT?",
     "loginDashboard" => "Log in and go to your Dashboard.",
     "sold_item" => "Sold Items",
-    "note"=>"Notification",
-    "status"=>"Status",
-    "BankDetails"=>"Bank Details",
+    "note" => "Notification",
+    "status" => "Status",
+    "BankDetails" => "Bank Details",
 
 
     "Auction" => "Auction",
     "Dashboard" => 'Dashboard',
     "MyBid" => "My Bid",
     'bidFeatures' => "Bid on These Featured Auctions",
+    "Items_Won"=>"Items Won",
+    "Active_Bids"=>"Active Bids",
+    "Purchasing"=>"Purchasing",
+    "bidon"=>"Bid on These Products!",
 
     // Header
 
@@ -68,7 +72,7 @@ return [
     "max" => "Maximum of 6 pictures",
     'product_d' => "Product Description",
     "Personal_Profile" => "Personal Profile",
-    "PD"=>"Personal Details",
+    "PD" => "Personal Details",
     "my_item" => "My Item",
     "sell" => "Sell",
     "message2" => "Online jewelry auctions where you can bid for your favorites jewelry",
@@ -81,8 +85,8 @@ return [
     "message7" => "Bidding is free Only pay if you win",
     'win' => "Win",
     'message8' => "Fun - Excitement - Great deals",
-    "winbid"=>"Winning Bids",
-
+    "winbid" => "Winning Bids",
+    "profile_picture" => "Profile Picture"
 
 
 

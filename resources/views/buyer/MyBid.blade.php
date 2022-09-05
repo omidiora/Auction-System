@@ -179,7 +179,11 @@
                 <div class="col-lg-8">
                     <div class="dash-bid-item dashboard-widget mb-40-60">
                         <div class="header">
-                            <h4 class="title">My Bids</h4>
+                            <h4 class="title">
+
+
+                                {{ __('messages.MyBid') }}
+                            </h4>
                             <!-- <span class="notify"><i class="flaticon-alarm"></i> Manage Notifications</span> -->
                         </div>
                         <!-- <ul class="button-area nav nav-tabs">
@@ -196,55 +200,61 @@
                            
           
                             <div class="row justify-content-center mb-30-none">
-                    @if ($MyBids==null)
+                    @if (count($MyBids)==0)
 
                     <div>
                         <h3>Your Bid is empty</h3>
                     </div>
                     @else
-                    <div class="col-sm-10 col-md-6 col-lg-4">
-                        <div class="auction-item-2">
-                            <div class="auction-thumb">
-                                
-                                <a ><img  src="{{ asset('cover/'.$MyBids->cover_image) }}" alt="car"></a>
-                                <a href="#0" class="rating"><i class="far fa-star"></i></a>
-                                <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
-                            </div>
-                            <div class="auction-content">
-                                <h6 class="title">
-                                    <a href="#0">{{$MyBids->name}}</a>
-                                </h6>
-                                <div class="bid-area">
-                                    <div class="bid-amount" style="width: 100%;">
-                                        <div class="icon">
-                                            <i class="flaticon-auction"></i>
-                                        </div>
-                                        <div class="amount-content">
-                                            <div class="current">Amount Bidded</div>
-                                            <div class="amount">&#x20A6;{{$MyBids->price}}</div>
-                                        </div>
-                                    </div>
+             @foreach ($MyBids as $item)
+                 
+             <div class="col-sm-10 col-md-6 col-lg-4">
+                <div class="auction-item-2">
+                    <div class="auction-thumb">
+                        
+                        <a >
+                            <img src="/cover/{{$item->cover_image}}" style="height: 200px;width:900px" alt="logo">
+                            {{-- <img src="/assets/images/logo/logo2.png" alt="logo"> 
+                            <img  src="{{ asset('./cover/'.$item->cover_image) }}" alt="car"></a> --}}
+                        <a href="#0" class="rating"><i class="far fa-star"></i></a>
+                        <a href="#0" class="bid"><i class="flaticon-auction"></i></a>
+                    </div>
+                    <div class="auction-content">
+                        <h6 class="title">
+                            <a href="#0">{{$item->name}}</a>
+                        </h6>
+                        <div class="bid-area">
+                            <div class="bid-amount" style="width: 100%;">
+                                <div class="icon">
+                                    <i class="flaticon-auction"></i>
                                 </div>
-                                {{-- <div class="countdown-area">
-                                    <div class="countdown">
-                                        <div id="bid_conter26">
-                                            
-                                            <script>
-                                document.write(moment($MyBids->ending_date).fromNow())
-                                            </script>
-                                      
-                                            
-                                        </div>
-                                    </div>
-                                    <span class="total-bids">{{$MyBids->bid==null ? 0 :$MyBids->bid}}  bids</span>
-                                </div> --}}
-                                <div class="text-center">
-                                    <a href="bid/{{$MyBids->id}}" class="custom-button">Submit a bid</a>
+                                <div class="amount-content">
+                                    <div class="current">Amount Bidded</div>
+                                    <div class="amount">&#x20A6;{{$item->price}}</div>
                                 </div>
                             </div>
                         </div>
-                      
+                        {{-- <div class="countdown-area">
+                            <div class="countdown">
+                                <div id="bid_conter26">
+                                    
+                                    <script>
+                        document.write(moment($item->ending_date).fromNow())
+                                    </script>
+                              
+                                    
+                                </div>
+                            </div>
+                            <span class="total-bids">{{$item->bid==null ? 0 :$item->bid}}  bids</span>
+                        </div> --}}
+                        <div class="text-center">
+                            {{-- <a href="/product/bid/{{$item->id}}" class="custom-button">Submit a bid</a> --}}
+                        </div>
                     </div>
+                </div>
+              
+            </div>
+             @endforeach
                         
                     @endif
                 

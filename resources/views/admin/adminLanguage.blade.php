@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="assets/css/flaticon.css"> -->
     <link rel="stylesheet" href="../assets/css/jquery-ui.min.css">
     <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
-    <link rel="stylesheet" href="../assets/css/adminlte.min.css" <link rel="stylesheet" href="../css/adminlte.min.css">
+    <link rel="stylesheet" href="../assets/css/adminlte.min.css">
+    <link rel="stylesheet" href="../css/adminlte.min.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/all.min.css">
     <!-- <link rel="stylesheet" href="css/index.css"> -->
@@ -115,7 +116,32 @@
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        @include('admin.Navbar')
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">
+                        <i class="far fa-comments"></i>
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
@@ -158,28 +184,36 @@
                 </div>
                 <!-- /.container-fluid -->
             </div>
-            @include('admin.header')
-            <!-- <div class="container-fluid">
+           @include('admin.header')
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-4">
-                        <a href="addpost.php" class="btn btn-outline-info btn-block btn-add">
-                            <i class="fas fa-plus"></i> Add Post
+                        <a href="{{route("addlanguage")}}" class="btn btn-outline-info btn-block btn-add">
+                            <i class="fas fa-plus"></i> Add Language
                         </a>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="pb-3">
                 <div class="card mt-3 ml-3 mr-3">
                     <div class="card-header brand-color">
                         <div class="row">
                             <div class="col-xs-12 col-sm-7 col-md-8 mb-3 result-head">
-                                <h3 class="card-title">List Of Products Being Auctioned</h3>
-                                @if (session('deleteProduct'))
+                                <h3 class="card-title">List Of Language</h3>
+                                @if (session('deleteCategory'))
                                 <div class="alert alert-success" role="alert">
-                                    {{ session('deleteProduct') }}
+                                   <p> {{ session('deleteCategory') }}</p>
                                 </div>
                             @endif
+
+
+                            @if (session('CategoryAdd'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('CategoryAdd') }}
                             </div>
+                        @endif
+                            </div>
+                           
                             <!-- <div class="col-xs-12 col-sm-5 col-md-4 result-head">
                                 <div id="example1_filter" class="dataTables_filter">
                                     <label for=""><span class="search-txt"> Search: </span><input type="search"
@@ -192,75 +226,68 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        @if (session('LangDelete'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('LangDelete') }}
+                        </div>
+                    @endif
                         <div class="card-body p-0">
                             <div class="row">
                                 <div class="col-md-12">
                                     <table class="table table-head-fixed text-nowrap table-striped">
                                         <thead>
+
+                                            
                                             <tr>
-                                                <th>S/N</th>
+                                              
                                                 <th>Name</th>
-                                                <th>Category</th>
-                                                <th colspan="2" style="text-align: center;">Action</th>
+                                                
+                                                <th colspan="1" style="text-align: center;">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           @foreach ($products as $item)
-                                           <tr>
-                                            <td>{{$item->id}}</td>
+                                            <tr>
+                                                <td>English</td>
+                                               
+                                            </tr>
+                                            <tr>
+                                                <td>Yoruba</td>
+                                            </tr>
+                                        @foreach ($language as $item)
+                                            
+                                        <tr>
+                                          
+                                            
                                             <td>{{$item->name}}</td>
+
+                                           
+                                           
                                             <td>
-
-
-                                            
-                                            </td>
-                                            
-
-                                            <td>
-                                                <a href="/product/bid/{{$item->id}}" class="btn btn-app">
-                                                    <i class="fas fa-edit"></i> View Product
+                                                {{-- EditAdminCategory --}}
+                                                <a href="{{route('LanguageEdit', ['id' => $item->id])}}"  class="btn btn-app">
+                                                    <i class="far fa-edit"></i> Edit
                                                 </a>
                                             </td>
-
-
-                                            
-                                            
                                             <td>
-                                                <form    action="{{route('AdminProductDelete', ['id' => $item->id])}}"  method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
+                                    <form    action="{{route('detelelanguage', ['id' => $item->id])}}"  method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                    
                                             </td>
-
-
-                                   
-
-
                                         </tr>
-
                                         
-                                               
-                                           @endforeach
-                                           
+                                        @endforeach
+                                          
 
                                         </tbody>
                                     </table>
                                 </div>
-
-                                <!-- <div class="col-sm-12 col-md-5">
-                                    <div class="dataTables_info data-info">
-                                        Showing 1 to 10 of 5 entries
-                                    </div>
-                                </div> -->
-                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            
-
 
 
 

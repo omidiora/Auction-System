@@ -116,32 +116,7 @@
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
-                </li>
-            </ul>
-
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="messages.html">
-                        <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">{{count($contacts)}}</span>
-                    </a>
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
-            </ul>
+       @include('admin.navbar')
         </nav>
         <!-- /.navbar -->
 
@@ -165,7 +140,7 @@
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
-@include('admin.adminSide')
+                @include('admin.adminSide')
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -185,124 +160,55 @@
                 </div>
                 <!-- /.container-fluid -->
             </div>
-            @include('admin.header')
-            <!-- <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="addpost.php" class="btn btn-outline-info btn-block btn-add">
-                            <i class="fas fa-plus"></i> Add Post
-                        </a>
-                    </div>
-                </div>
-            </div> -->
-            <div class="pb-3">
-                <div class="card mt-3 ml-3 mr-3">
-                    <div class="card-header brand-color">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-7 col-md-8 mb-3 result-head">
-                                <h3 class="card-title">List Of Users</h3>
-                                <p id="blockMessage"> @if (session('blocked'))
-                                    <div class="alert alert-danger mt-4">
-                                        {{ session('blocked') }}
-                                    </div>
-                                 @endif</p>
-                            </div>
-                            <!-- <div class="col-xs-12 col-sm-5 col-md-4 result-head">
-                                <div id="example1_filter" class="dataTables_filter">
-                                    <label for=""><span class="search-txt"> Search: </span><input type="search"
-                                            class="form-control control-form small-search" placeholder
-                                            aria-controls="example1" style="width: 60% !important;">
-                                    </label>
-                                </div>
-                            </div> -->
-                        </div>
+
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">Inbox</h3>
                     </div>
                     <!-- /.card-header -->
-                    <div class="card-body">
-                        <div class="card-body p-0">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table table-head-fixed text-nowrap table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>S/N</th>
-                                                <th>Name</th>
-                                                <th>Type</th>
-                                                <th colspan="3" style="text-align: center;">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach ($allUser as $user)
-                                        <tr>
-                                            <td>1</td>
-                                            <td>{{$user->name}}</td>
-                                            <td>
-                                                @if ($user->user_type=="1")
+                    <div class="card-body p-0">
+                        <div class="table-responsive mailbox-messages">
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                   @foreach ($contacts as $item)
 
-                                                {{'Seller'}}
-                                                @elseif($user->user_type=="2")
+                                   <tr>
+                                    <td>
+                                        <div class="icheck-primary">
+                                            <input type="checkbox" value="" id="check1">
+                                            <label for="check1"></label>
+                                        </div>
+                                    </td>
+                                    <td class="mailbox-star">
+                                        <a href="#"><i class="fas fa-star text-warning"></i></a>
+                                    </td>
 
-                                                {{"Buyer"}}
-                                                    
-                                                @endif
+                                    <td class="mailbox-subject">
+                                        <b>Bid Announcement</b> - {{$item->problem}}
+                                    </td>
 
-                                            </td>
-                                            <td>
-                                                <a href="{{route('ViewUserAdmin', ['id' => $user->id])}}" class="btn btn-app">
-                                                    <i class="fas fa-edit"></i> view profile
-                                                </a>
-                                            </td>
-                                            <td>
-                                               @if ($user->status==2)
-                                               <form method="POST" action="{{route('BlockUserAdmin', ['id' => $user->id])}}">
-                                                @csrf
-                                           <button class="btn btn-danger" type="submit">Block</button>
-                                            </form>
+                                    <td class="mailbox-date">{{$item->created_at->diffForHumans()}}</td>
+                                </tr>
+                                   
 
-                                            @elseif($user->status==1)
-                                            <p>User is blocked</p>
-                                                   
-                                               @endif
-                                            </td>
-                                            <td>
-                                                @if ($user->status==2)
-                                                
-                                            <button class="btn  btn-success" type="submit">Active</button>
-                                            
- 
-                                             @elseif($user->status==1)
-                                             <form method="POST" action="{{route('UnBlockUserAdmin', ['id' => $user->id])}}">
-                                                @csrf
-                                            
-                                                <button class="btn btn-primary" type="submit">UnBlock</button>
-                                          
-                                        </form>
-                                                    
-                                                @endif
-                                                {{-- UnBlockUserAdmin --}}
-                                                
-                                            </td>
-                                        </tr>
-                                        
-                                            
-                                        @endforeach
-                                          
+                                   @empty($contacts)
 
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <!-- <div class="col-sm-12 col-md-5">
-                                    <div class="dataTables_info data-info">
-                                        Showing 1 to 10 of 5 entries
-                                    </div>
-                                </div> -->
-                               
-                            </div>
+                                       
+                                   @endempty
+                                       
+                                   @endforeach
+                                  
+                                </tbody>
+                            </table>
+                            <!-- /.table -->
                         </div>
+                        <!-- /.mail-box-messages -->
                     </div>
+                   
                 </div>
             </div>
+
 
 
 
@@ -329,13 +235,6 @@
     <script src="../js/popper.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/adminlte.min.js"></script> -->
-
-    <script>
-        setTimeout(function() {
-    $('#blockMessage').fadeOut('fast');
-}, 30000);
-
-    </script>
 </body>
 
 </html>

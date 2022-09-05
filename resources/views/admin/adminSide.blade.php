@@ -24,6 +24,42 @@
                 </p>
             </a>
         </li>
+
+        <li class="nav-item menu-open mb-3 pb-3 user-panel">
+            <a href="{{route("AdminCategory")}}" class="nav-link">
+                <i class="nav-icon fas fa-pencil-alt"></i>
+                <p>
+                    Manage Bids
+                </p>
+            </a>
+        </li>
+        <li class="nav-item menu-open mb-3 pb-3 user-panel">
+            <a href="{{route("language")}}" class="nav-link">
+                <i class="nav-icon fas fa-pencil-alt"></i>
+                <p>
+                    Manage Language
+                </p>
+            </a>
+        </li>
+
+
+        <li class="nav-item menu-open mb-3 pb-3 user-panel">
+            <a class="dropdown-item" href="{{ route('AdminLogout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+            
+
+             <form id="logout-form" action="{{ route('AdminLogout') }}" method="POST" class="d-none" >
+                <i class="nav-icon fas fa-pencil-alt"></i>
+               
+                @csrf
+            </form>
+
+          <p style="color:white">  {{ __('Logout') }} </p>
+            </a>
+        </li>
+
+
         {{-- <li class="nav-item menu-open mb-3 pb-3 user-panel">
             <a href="managebid/html" class="nav-link">
                 <i class="nav-icon far fa-credit-card"></i>
@@ -41,22 +77,6 @@
             </a>
         </li> --}}
         
-        <li class="nav-item">
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            <a id='logout-form' type="submit" >
-                <i class="nav-icon fas fa-sign-out-alt"></i>
-               
-                <p id="logout-form">
-                    LogOut
-                </p>
-
-                
-                   
-
-                   
-                </form>
-            </a>
-        </li>
+        
     </ul>
 </nav>

@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Multilingual Online Auction System</title>
+    <title>Sbidu - Bid And Auction HTML Template</title>
 
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/animate.css">
-    <link rel="stylesheet" href="../assets/css/nice-select.css">
-    <link rel="stylesheet" href="../assets/css/owl.min.css">
-    <link rel="stylesheet" href="../assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="../assets/css/flaticon.css">
-    <link rel="stylesheet" href="../assets/css/jquery-ui.min.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/animate.css">
+    <link rel="stylesheet" href="../../assets/css/nice-select.css">
+    <link rel="stylesheet" href="../../assets/css/owl.min.css">
+    <link rel="stylesheet" href="../../assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="../../assets/css/flaticon.css">
+    <link rel="stylesheet" href="../../assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
 
-    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../../assets/images/favicon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -38,7 +38,8 @@
         <div class="header-top">
             <div class="container">
                 <div class="header-top-wrapper">
-                   @include('component.trans')
+                    @include('component.trans')
+                  
                 </div>
             </div>
         </div>
@@ -50,7 +51,7 @@
                             <img src="assets/images/logo/logo.png" alt="logo">
                         </a>
                     </div> -->
-                   @include('component.header')
+                    @include('component.header')
                     <!-- <form class="search-form">
                         <input type="text" placeholder="Search for products....">
                         <button type="submit"><i class="fas fa-search"></i></button>
@@ -82,7 +83,7 @@
                 <h4 class="title">Shopping cart</h4>
                 <div class="single-product-item">
                     <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop01.jpg" alt="shop"></a>
+                        <a href="#0"><img src="../../assets/images/shop/shop01.jpg" alt="shop"></a>
                     </div>
                     <div class="content">
                         <h4 class="title"><a href="#0">Color Pencil</a></h4>
@@ -92,7 +93,7 @@
                 </div>
                 <div class="single-product-item">
                     <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop02.jpg" alt="shop"></a>
+                        <a href="#0"><img src="../../assets/images/shop/shop02.jpg" alt="shop"></a>
                     </div>
                     <div class="content">
                         <h4 class="title"><a href="#0">Water Pot</a></h4>
@@ -102,7 +103,7 @@
                 </div>
                 <div class="single-product-item">
                     <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop03.jpg" alt="shop"></a>
+                        <a href="#0"><img src="../../assets/images/shop/shop03.jpg" alt="shop"></a>
                     </div>
                     <div class="content">
                         <h4 class="title"><a href="#0">Art Paper</a></h4>
@@ -112,7 +113,7 @@
                 </div>
                 <div class="single-product-item">
                     <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop04.jpg" alt="shop"></a>
+                        <a href="#0"><img src="../../assets/images/shop/shop04.jpg" alt="shop"></a>
                     </div>
                     <div class="content">
                         <h4 class="title"><a href="#0">Stop Watch</a></h4>
@@ -122,7 +123,7 @@
                 </div>
                 <div class="single-product-item">
                     <div class="thumb">
-                        <a href="#0"><img src="../assets/images/shop/shop05.jpg" alt="shop"></a>
+                        <a href="#0"><img src="../../assets/images/shop/shop05.jpg" alt="shop"></a>
                     </div>
                     <div class="content">
                         <h4 class="title"><a href="#0">Comics Book</a></h4>
@@ -140,116 +141,107 @@
 
 
     <!--============= Hero Section Starts Here =============-->
-    <div class="hero-section style-2 pb-lg-400">
-        <div class="bg_img hero-bg bottom_center" data-background="../assets/images/banner/hero-bg.png"></div>
+    <div class="hero-section style-2">
+        <div class="bg_img hero-bg bottom_center" data-background="../../assets/images/banner/hero-bg.png"></div>
     </div>
     <!--============= Hero Section Ends Here =============-->
 
 
     <!--============= Dashboard Section Starts Here =============-->
-    <section class="dashboard-section padding-bottom mt--240 mt-lg--325 pos-rel">
+    <section class="dashboard-section padding-bottom mt--240 mt-lg--440 pos-rel">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-10 col-md-7 col-lg-4">
-                    <div class="dashboard-widget mb-30 mb-lg-0">
+                    <div class="dashboard-widget mb-30 mb-lg-0 sticky-menu">
                         <div class="user">
                             <div class="thumb-area">
                                 <div class="thumb">
-                                    <img src="../assets/images/dashboard/user.png" alt="user">
+                                    <img src="../../assets/images/dashboard/user.png" alt="user">
                                 </div>
-                                <label for="profile-pic" class="profile-pic-edit"><i class="flaticon-pencil"></i></label>
-                                <input type="file" id="profile-pic" class="d-none">
+                               <form method="POST" action="{{route('updatePicture')}}" enctype="multipart/form-data">
+                                @csrf
+                                <label for="profile_pic" class="profile-pic-edit"><i class="flaticon-pencil"></i></label>
+                                <input type="file" id="profile-pic" name="profile_pic" class="d-none">
+                               </form>
                             </div>
                             <div class="content">
                                 <h5 class="title"><a href="#0">Percy Reed</a></h5>
-                                <span class="username"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="771d181f1937101a161e1b5914181a">[email&#160;protected]</a></span>
+                                <span class="username"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f993969197b99e94989095d79a9694">[email&#160;protected]</a></span>
                             </div>
                         </div>
                         <ul class="dashboard-menu">
-                           
-                          @include('component.SellerSidebar')
+                         @include('component.BuyerSidebar')
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="dashboard-widget mb-40">
-                        <div class="dashboard-title mb-30">
-                            <h5 class="title">My Activity</h5>
-                        </div>
-                        <div class="row justify-content-center mb-30-none">
-                            <div class="col-md-6 col-sm-6">
-                                <div class="dashboard-item">
-                                    <div class="thumb">
-                                        <img src="../assets/images/dashboard/01.png" alt="dashboard">
-                                    </div>
-                                    <div class="content">
-                                        <h2 class="title"><span class="counter">{{count($allProducts)}}</span></h2>
-                                        <h6 class="info">Active Selling Items</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6">
-                                <div class="dashboard-item">
-                                    <div class="thumb">
-                                        <img src="../assets/images/dashboard/02.png" alt="dashboard">
-                                    </div>
-                                    <div class="content">
-                                        <h2 class="title"><span class="counter">{{count($SoldItem)}}</span></h2>
-                                        <h6 class="info">Items Sold</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- <div class="col-md-4 col-sm-6">
-                                <div class="dashboard-item">
-                                    <div class="thumb">
-                                        <img src="assets/images/dashboard/03.png" alt="dashboard">
-                                    </div>
-                                    <div class="content">
-                                        <h2 class="title"><span class="counter">115</span></h2>
-                                        <h6 class="info">Favorites</h6>
-                                    </div>
-                                </div>
-                            </div> -->
-                        </div>
-                    </div>
-                    <div class="dashboard-widget">
-                        <h5 class="title mb-10">Selling</h5>
-                        <div class="dashboard-purchasing-tabs">
-                            <ul class="nav-tabs nav">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="dash-pro-item mb-30 dashboard-widget">
                                
-                                <li>
-                                    <a href="#history" data-toggle="tab">History</a>
-                                </li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane show active fade" id="current">
-                                    <table class="purchasing-table">
-                                        <thead>
-                                            <th>Item</th>
-                                            <th>Sell Price</th>
-                                            {{-- <th>Highest Bid</th>
-                                            <th>Lowest Bid</th> --}}
-                                            <th>Expires</th>
-                                        </thead>
-                                        <tbody>
-                                           @foreach ($allProducts as $item)
-                                           <tr>
-                                            <td data-purchase="item">{{$item->name}}</td>
-                                            <td data-purchase="bid price">&#x20A6;{{$item->price}}</td>
-                                            {{-- <td data-purchase="highest bid">$1,775.00</td>
-                                            <td data-purchase="lowest bid">$1,400.00</td> --}}
-                                            <td data-purchase="expires">{{$item->ending_date}}</td>
-                                        </tr>
-                                               
-                                           @endforeach
-                                           
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    
                                
-                             
+                                <div class="header">
+                                    <h4 class="title">{{ __('messages.PD') }}</h4>
+                                    <span class="edit"><i class="flaticon-edit"></i> Edit</span>
+                                </div>
+                              
+                                <ul class="dash-pro-body">
+                                    <li>
+                                        <div class="info-name">{{ __('messages.Name') }}</div>
+                                        <div class="info-value">{{$users->name}}</div>
+                                    </li>
+                                    <li>
+                                        <div class="info-name">{{ __('messages.Department') }}</div>
+                                        <div class="info-value">Computer Science</div>
+                                    </li>
+                                    <li>
+                                        <div class="info-name">Matric No.</div>
+                                        <div class="info-value">{{$users->matric_no}}</div>
+                                    </li>
+                                    <li>
+                                        <div class="info-name">{{ __('messages.dob') }}</div>
+                                        <div class="info-value">{{$users->dob}}</div>
+                                    </li>
+                                    <li>
+                                        <div class="info-name">{{ __('messages.Address') }}</div>
+                                        <div class="info-value">{{$users->address}}</div>
+                                    </li>
+                                    <li>
+                                        <div class="info-name">{{ __('messages.EmailAddress') }}</div>
+                                        <div class="info-value"><a href="http://pixner.net/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c3d303e392e286f68651c3b313d3530723f3331">[email&#160;protected]</a></div>
+                                    </li>
+                                    <li>
+                                        <div class="info-name">{{ __('messages.phone') }}</div>
+                                        <div class="info-value">{{$users->mobile}}</div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="dash-pro-item mb-30 dashboard-widget">
+                                <div class="header">
+                                    <h4 class="title">Account Settings</h4>
+                                    <!-- <span class="edit"><i class="flaticon-edit"></i> Edit</span> -->
+                                </div>
+                                <ul class="dash-pro-body">
+                                    <!-- <li>
+                                        <div class="info-name">Language</div>
+                                        <div class="info-value">English (United States)</div>
+                                    </li>
+                                    <li>
+                                        <div class="info-name">Time Zone</div>
+                                        <div class="info-value">(GMT-06:00) Central America</div>
+                                    </li> -->
+                                    <li>
+                                        <div class="info-name">{{ __('messages.status') }}</div>
+                                        <div class="info-value"><i class="flaticon-check text-success"></i> Active</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                      
+                       
                     </div>
                 </div>
             </div>
@@ -259,28 +251,28 @@
 
 
     <!--============= Footer Section Starts Here =============-->
-    <footer class="bg_img padding-top oh" data-background="../assets/images/footer/footer-bg.jpg">
+    <footer class="bg_img padding-top oh" data-background="../../assets/images/footer/footer-bg.jpg">
         <div class="footer-top-shape">
-            <img src="../assets/css/img/footer-top-shape.png" alt="css">
+            <img src="../../assets/css/img/footer-top-shape.png" alt="css">
         </div>
         <div class="anime-wrapper">
             <div class="anime-1 plus-anime">
-                <img src="../assets/images/footer/p1.png" alt="footer">
+                <img src="../../assets/images/footer/p1.png" alt="footer">
             </div>
             <div class="anime-2 plus-anime">
-                <img src="../assets/images/footer/p2.png" alt="footer">
+                <img src="../../assets/images/footer/p2.png" alt="footer">
             </div>
             <div class="anime-3 plus-anime">
-                <img src="../assets/images/footer/p3.png" alt="footer">
+                <img src="../../assets/images/footer/p3.png" alt="footer">
             </div>
             <div class="anime-5 zigzag">
-                <img src="../assets/images/footer/c2.png" alt="footer">
+                <img src="../../assets/images/footer/c2.png" alt="footer">
             </div>
             <div class="anime-6 zigzag">
-                <img src="../assets/images/footer/c3.png" alt="footer">
+                <img src="../../assets/images/footer/c3.png" alt="footer">
             </div>
             <div class="anime-7 zigzag">
-                <img src="../assets/images/footer/c4.png" alt="footer">
+                <img src="../../assets/images/footer/c4.png" alt="footer">
             </div>
         </div>
         <!-- <div class="newslater-wrapper">
@@ -341,7 +333,7 @@
                                     <a href="#0">Auction</a>
                                 </li>
                                 <li>
-                                    <a href="seller-item-list.html">Sell</a>
+                                    <a href="#0">Sell</a>
                                 </li>
                                 <li>
                                     <a href="#0">Help</a>
@@ -416,16 +408,16 @@
                         </div> -->
                         <ul class="gateway-area">
                             <li>
-                                <a href="#0"><img src="../assets/images/footer/paypal.png" alt="footer"></a>
+                                <a href="#0"><img src="../../assets/images/footer/paypal.png" alt="footer"></a>
                             </li>
                             <li>
-                                <a href="#0"><img src="../assets/images/footer/visa.png" alt="footer"></a>
+                                <a href="#0"><img src="../../assets/images/footer/visa.png" alt="footer"></a>
                             </li>
                             <li>
-                                <a href="#0"><img src="../assets/images/footer/discover.png" alt="footer"></a>
+                                <a href="#0"><img src="../../assets/images/footer/discover.png" alt="footer"></a>
                             </li>
                             <li>
-                                <a href="#0"><img src="../assets/images/footer/mastercard.png" alt="footer"></a>
+                                <a href="#0"><img src="../../assets/images/footer/mastercard.png" alt="footer"></a>
                             </li>
                         </ul>
                         <div class="copyright">
@@ -441,23 +433,21 @@
 
 
     <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-    <script src="../assets/js/jquery-3.3.1.min.js"></script>
-    <script src="../assets/js/modernizr-3.6.0.min.js"></script>
-    <script src="../assets/js/plugins.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../assets/js/isotope.pkgd.min.js"></script>
-    <script src="../assets/js/wow.min.js"></script>
-    <script src="../assets/js/waypoints.js"></script>
-    <script src="../assets/js/nice-select.js"></script>
-    <script src="../assets/js/counterup.min.js"></script>
-    <script src="../assets/js/owl.min.js"></script>
-    <script src="../assets/js/magnific-popup.min.js"></script>
-    <script src="../assets/js/yscountdown.min.js"></script>
-    <script src="../assets/js/jquery-ui.min.js"></script>
-    <script src="../assets/js/main.js"></script>
+    <script src="../../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/js/modernizr-3.6.0.min.js"></script>
+    <script src="../../assets/js/plugins.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/isotope.pkgd.min.js"></script>
+    <script src="../../assets/js/wow.min.js"></script>
+    <script src="../../assets/js/waypoints.js"></script>
+    <script src="../../assets/js/nice-select.js"></script>
+    <script src="../../assets/js/counterup.min.js"></script>
+    <script src="../../assets/js/owl.min.js"></script>
+    <script src="../../assets/js/magnific-popup.min.js"></script>
+    <script src="../../assets/js/yscountdown.min.js"></script>
+    <script src="../../assets/js/jquery-ui.min.js"></script>
+    <script src="../../assets/js/main.js"></script>
 </body>
-
-
 
 <script type="text/javascript">
 

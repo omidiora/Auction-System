@@ -5,16 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/all.min.css">
     <!-- <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <link rel="stylesheet" href="assets/css/owl.min.css">
     <link rel="stylesheet" href="assets/css/magnific-popup.css">
     <link rel="stylesheet" href="assets/css/flaticon.css"> -->
-    <link rel="stylesheet" href="../assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../assets/css/jquery-ui.min.css">
     <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
-    <link rel="stylesheet" href="../assets/css/adminlte.min.css" <link rel="stylesheet" href="../css/adminlte.min.css">
+    <link rel="stylesheet" href="../../assets/css/adminlte.min.css">
+    <link rel="stylesheet" href="../css/adminlte.min.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/all.min.css">
     <!-- <link rel="stylesheet" href="css/index.css"> -->
@@ -115,7 +116,32 @@
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
-        @include('admin.Navbar')
+        <nav class="main-header navbar navbar-expand navbar-dark navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Home</a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="messages.html">
+                        <i class="far fa-comments"></i>
+                        <span class="badge badge-danger navbar-badge">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
@@ -138,7 +164,7 @@
                     </div>
                 </div>
                 <!-- Sidebar Menu -->
-                @include('admin.adminSide')
+              @include('admin.adminSide')
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
@@ -158,108 +184,43 @@
                 </div>
                 <!-- /.container-fluid -->
             </div>
-            @include('admin.header')
-            <!-- <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="addpost.php" class="btn btn-outline-info btn-block btn-add">
-                            <i class="fas fa-plus"></i> Add Post
-                        </a>
-                    </div>
-                </div>
-            </div> -->
+
             <div class="pb-3">
                 <div class="card mt-3 ml-3 mr-3">
                     <div class="card-header brand-color">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-7 col-md-8 mb-3 result-head">
-                                <h3 class="card-title">List Of Products Being Auctioned</h3>
-                                @if (session('deleteProduct'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('deleteProduct') }}
-                                </div>
-                            @endif
+                            <div class="col-xs-12 col-sm-7 col-md-12 mb-3 result-head">
+                                <h3 class="card-title">Add Language</h3>
                             </div>
-                            <!-- <div class="col-xs-12 col-sm-5 col-md-4 result-head">
-                                <div id="example1_filter" class="dataTables_filter">
-                                    <label for=""><span class="search-txt"> Search: </span><input type="search"
-                                            class="form-control control-form small-search" placeholder
-                                            aria-controls="example1" style="width: 60% !important;">
-                                    </label>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
-                    <!-- /.card-header -->
                     <div class="card-body">
                         <div class="card-body p-0">
+                            @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                             <div class="row">
                                 <div class="col-md-12">
-                                    <table class="table table-head-fixed text-nowrap table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>S/N</th>
-                                                <th>Name</th>
-                                                <th>Category</th>
-                                                <th colspan="2" style="text-align: center;">Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                           @foreach ($products as $item)
-                                           <tr>
-                                            <td>{{$item->id}}</td>
-                                            <td>{{$item->name}}</td>
-                                            <td>
-
-
+                                    <form action="{{route("addlanguage")}}" method="post" >
+                                        @csrf
+                                        <div class="form-group">
                                             
-                                            </td>
-                                            
+                                            <input type="text" class="form-control" placeholder="Enter Language Name" name="name" value="">
+                                        </div>
 
-                                            <td>
-                                                <a href="/product/bid/{{$item->id}}" class="btn btn-app">
-                                                    <i class="fas fa-edit"></i> View Product
-                                                </a>
-                                            </td>
+                                        <div class="form-group">
+                                            <input type="submit" class="btn btn-outline-primary btn-add" name="submit" value="Add Language">
+                                        </div>
 
-
-                                            
-                                            
-                                            <td>
-                                                <form    action="{{route('AdminProductDelete', ['id' => $item->id])}}"  method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </td>
-
-
-                                   
-
-
-                                        </tr>
-
-                                        
-                                               
-                                           @endforeach
-                                           
-
-                                        </tbody>
-                                    </table>
+                                    </form>
                                 </div>
-
-                                <!-- <div class="col-sm-12 col-md-5">
-                                    <div class="dataTables_info data-info">
-                                        Showing 1 to 10 of 5 entries
-                                    </div>
-                                </div> -->
-                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            
 
 
 
@@ -267,22 +228,22 @@
         </div>
     </div>
 
-    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/js/jquery-3.3.1.min.js"></script>
     <!-- <script src="assets/js/modernizr-3.6.0.min.js"></script>
     <script src="assets/js/plugins.js"></script> -->
-    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/bootstrap.min.js"></script>
     <!-- <script src="assets/js/isotope.pkgd.min.js"></script>
     <script src="assets/js/wow.min.js"></script>
     <script src="assets/js/waypoints.js"></script>
     <script src="assets/js/nice-select.js"></script> -->
-    <script src="../assets/js/counterup.min.js"></script>
+    <script src="../../assets/js/counterup.min.js"></script>
     <!-- <script src="assets/js/owl.min.js"></script>
     <script src="assets/js/magnific-popup.min.js"></script>
     <script src="assets/js/yscountdown.min.js"></script> -->
-    <script src="../assets/js/jquery-ui.min.js"></script>
+    <script src="../../assets/js/jquery-ui.min.js"></script>
     <!-- <script src="assets/js/main.js"></script> -->
 
-    <script src="../assets/js/adminlte.min.js"></script>
+    <script src="../../assets/js/adminlte.min.js"></script>
     <!-- <script src="../js/jquery.js"></script>
     <script src="../js/popper.js"></script>
     <script src="../js/bootstrap.min.js"></script>

@@ -184,7 +184,10 @@
                                     </div>
                                     <div class="content">
                                         <h2 class="title"><span class="counter">{{count($bids)}}</span></h2>
-                                        <h6 class="info">Active Bids</h6>
+                                        <h6 class="info">
+                                            {{ __('messages.Active_Bids') }}
+                                            {{-- Active_Bids --}}
+                                        </h6>
                                     </div>
                                 </div>
                             </div>
@@ -195,7 +198,10 @@
                                     </div>
                                     <div class="content">
                                         <h2 class="title"><span class="counter">{{count($itemWon)}}</span></h2>
-                                        <h6 class="info">Items Won</h6>
+                                        <h6 class="info">
+
+                                {{ __('messages.Items_Won') }}
+                                        </h6>
                                     </div>
                                 </div>
                             </div>

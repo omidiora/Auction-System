@@ -15,11 +15,19 @@ class DashboardController extends Controller
         $products = DB::table('products')
             ->join('users', 'users.id', '=', 'products.user_id')->where("products.ended_bid", '1')->get();
 
-        $allProducts = DB::table('products')
-            ->join('buyers', 'buyers.id', '=', 'products.user_id')
+ 
+
+    $SoldItem = DB::table('products')->where('products.user_id', Auth::id())
+            ->where('products.ended_bid', '=', 1)->get();
+
+
+
+        $allProducts = DB::table('buyers')
+            ->join('products', 'buyers.id', '=', 'products.user_id')
             ->where('products.user_id', '=', Auth::id())
             ->get();
-        return view("Dashboard.Seller", compact('products', 'allProducts'));
+
+        return view("Dashboard.Seller", compact('products', 'allProducts','SoldItem'));
     }
 
     public function BuyerDashboard()

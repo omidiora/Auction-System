@@ -7,10 +7,27 @@ use App\Models\Contact;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Auth;
+
 
 class AdminController extends Controller
 {
     //
+
+    public function AdminLogout()
+    {
+        Auth::logout();
+        return redirect("/admin/login");
+    }
+
+    public function LoginPage()
+    {
+        return view("admin.LoginPage");
+    }
+
+
+
 
     public function ManageUser()
     {
@@ -58,8 +75,11 @@ class AdminController extends Controller
     {
         $allUser = User::all();
         $allCategories = Category::all();
+
         $products = Product::all();
         $contacts = Contact::all();
+
+
 
         return view('admin.AdminProduct', compact("allUser", 'allCategories', 'products', 'contacts'));
     }
@@ -82,7 +102,7 @@ class AdminController extends Controller
         $products = Product::all();
         $contacts = Contact::all();
 
-        return view('admin.AdminCategory', compact("allUser", 'allCategories', 'products','contacts'));
+        return view('admin.AdminCategory', compact("allUser", 'allCategories', 'products', 'contacts'));
     }
     public function AdminCategoryDelete($id)
     {
@@ -119,11 +139,73 @@ class AdminController extends Controller
         $allCategories = Category::all();
         $products = Product::all();
         $contacts = Contact::all();
-        return view('admin.addAdminCategory', compact("allUser", 'allCategories', 'products','contacts'));
+        return view('admin.addAdminCategory', compact("allUser", 'allCategories', 'products', 'contacts'));
+    }
+
+
+    public function Messages()
+    {
+        $allUser = User::all();
+        $allCategories = Category::all();
+        $products = Product::all();
+        $contacts = Contact::all();
+
+        return view('admin.Message', compact("allUser", 'allCategories', 'products', 'contacts'));
+    }
+
+
+    public function adminViewCategory($id)
+    {
+        $categories  =  DB::table('categories')->where('products.id', $id)
+            ->join('products', 'products.category', '=', 'categories.id')->get();
+
+
+        return view('category.Item', compact("categories"));
+    }
+
+
+    public function EditAdminCategory($id)
+    {
+
+        $categories = Category::where('id', $id)->first();
+
+        return view('admin.EditCategory', compact("categories"));
+    }
+
+
+    public function UpdateAdminCategory(Request $request, $id)
+    {
+        $request->validate([
+            'category' => 'required',
+
+        ]);
+        $categories = Category::where('id', $id)->first();
+        $categories->category = $request->category;
+        $categories->save();
+
+
+
+        return redirect()->back()->with('success', 'Category Updated');
+    }
+
+
+    public function AdminViewBid()
+    {
+
+        $allUser = User::all();
+        $allCategories = Category::all();
+        $products = Product::all();
+        $contacts = Contact::all();
+
+        $BidProduct =  DB::table('products')->join('buyers', 'buyers.product_id', '=', 'products.id')->orderBy('id', 'desc');
+
+
+        return view('admin.AdminBid', compact("allUser", 'allCategories', 'products', 'contacts'));
     }
 
 
 
+    // AdminViewBid
 
-    // BlockUserAdmin
+
 }

@@ -38,7 +38,7 @@ class BuyerController extends Controller
             $userSchema = User::first();
             $offerData = [
                 'name' => Auth::user()->name,
-                'body' => Auth::user()->name .' '.'has bid bidded an amount of ' . $request->price,
+                'body' => Auth::user()->name . ' ' . 'has bid bidded an amount of ' . $request->price,
                 'thanks' => 'Thank you',
                 'offerText' => 'Check out the offer',
                 'offerUrl' => url('/'),
@@ -90,7 +90,15 @@ class BuyerController extends Controller
     {
 
 
-        $MyBids = Buyer::where([['user_id', '=', Auth::id()]])->first();
+
+        $MyBids  = DB::table('products')
+            ->join('buyers', 'buyers.user_id', '=',  'products.user_id')->get();
+
+        
+        
+
+    
+
         return view("buyer.MyBid", compact('MyBids'));
     }
 }

@@ -234,6 +234,7 @@
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Name</th>
+                                               
                                                 <th colspan="3" style="text-align: center;">Action</th>
                                             </tr>
                                         </thead>
@@ -243,9 +244,17 @@
                                         <tr>
                                             <td>{{$item->id}}</td>
                                             <td>{{$item->category}}</td>
+
+                                            <td>
+                                                <a href="{{route('adminViewCategory', ['id' => $item->id])}}" class="btn btn-app">
+                                                    <i class="fas fa-edit"></i> View Category
+                                                </a>
+                                            </td>
+                                            
                                            
                                             <td>
-                                                <a class="btn btn-app">
+                                                {{-- EditAdminCategory --}}
+                                                <a href="{{route('EditAdminCategory', ['id' => $item->id])}}"  class="btn btn-app">
                                                     <i class="far fa-edit"></i> Edit
                                                 </a>
                                             </td>

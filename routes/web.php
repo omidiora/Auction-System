@@ -61,6 +61,7 @@ Route::group(['prefix' => 'product'], function () {
 Route::group(['prefix' =>  'Buyer'], function () {
     Route::post('bid', [App\Http\Controllers\BuyerController::class, 'SubmitBidFinally'])->name('SubmitBidPage');
     Route::get('mybid', [App\Http\Controllers\BuyerController::class, 'MyBidItem'])->name('MyBidItem');
+    Route::get('profile', [App\Http\Controllers\ProfileController::class, 'buyer'])->name("BuyerpersonalProfile");
 });
 
 
@@ -81,6 +82,18 @@ Route::group(['prefix' => 'dashboard'], function () {
 });
 
 
+Route::group(['prefix' => 'profile'], function () {
+    Route::get('edit', [App\Http\Controllers\ProfileController::class, 'EditPicture'])->name('updatePicture');
+    Route::post('update', [App\Http\Controllers\ProfileController::class, 'UpdateProfile'])->name('updatePicture');
+});
+
+
+
+
+
+
+
+
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -93,11 +106,29 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('category', [App\Http\Controllers\AdminController::class, 'AdminCategory'])->name('AdminCategory');
     Route::post('category/delete/{id}', [App\Http\Controllers\AdminController::class, 'AdminCategoryDelete'])->name('AdminCategoryDelete');
     Route::get('add/category', [App\Http\Controllers\AdminController::class, 'addAdminCategory'])->name('addAdminCategory');
+    Route::get('category/{id}', [App\Http\Controllers\AdminController::class, 'adminViewCategory'])->name('adminViewCategory');
     Route::post('add/category', [App\Http\Controllers\AdminController::class, 'CreateAdminCategory'])->name('CreateAdminCategory');
+    Route::get('edit/category/{id}', [App\Http\Controllers\AdminController::class, 'EditAdminCategory'])->name('EditAdminCategory');
+    Route::post('update/category/{id}', [App\Http\Controllers\AdminController::class, 'UpdateAdminCategory'])->name('UpdateAdminCategory');
+    Route::get('messages', [App\Http\Controllers\AdminController::class, 'Messages'])->name('Messages');
+    Route::get('bids', [App\Http\Controllers\AdminController::class, 'AdminViewBid'])->name('AdminViewBid');
+    Route::get('lang', [App\Http\Controllers\UpdateLanguage::class, 'language'])->name('language');
+    Route::get('lang/add', [App\Http\Controllers\UpdateLanguage::class, 'addlanguage'])->name('addlanguage');
+    Route::post('lang/add', [App\Http\Controllers\UpdateLanguage::class, 'postaddlanguage'])->name('addlanguage');
+    Route::post('lang/delete/{id}', [App\Http\Controllers\UpdateLanguage::class, 'LanguageDelete'])->name('detelelanguage');
+    Route::get('lang/edit/{id}', [App\Http\Controllers\UpdateLanguage::class, 'LanguageEdit'])->name('LanguageEdit');
 
-    // UnBlockUserAdmin
-    // ViewUserAdmin
+    Route::post('lang/update/{id}', [App\Http\Controllers\UpdateLanguage::class, 'LanguageUpdate'])->name('LanguageUpdate');
+    Route::post('logout', [App\Http\Controllers\AdminController::class, 'AdminLogout'])->name('AdminLogout');
+    Route::get('login', [App\Http\Controllers\AdminController::class, 'LoginPage'])->name('LoginPage');
+
 });
+
+
+
+
+
+
 
 Route::group(['prefix' => 'contact'], function () {
     Route::get('/', [App\Http\Controllers\ContactController::class, 'index'])->name('Contact');
