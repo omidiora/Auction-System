@@ -159,6 +159,11 @@ Route::post('/pay', [FlutterwaveController::class, 'initialize'])->name('pay');
 // The callback url after a payment
 Route::get('/rave/callback', [FlutterwaveController::class, 'callback'])->name('callback');
 
+
+
+
+
+
 // Route::get('/category',function(){
 //     \App\Models\Category::create([
 

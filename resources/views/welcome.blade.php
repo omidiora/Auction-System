@@ -253,6 +253,8 @@
             </div>
            
         </div>
+        @if (Auth::check()&& Auth::user()->user_type==1)
+        @else
         <div class="row justify-content-center mb-30-none">
             @foreach ($showJeweleryItem as $item)
             <div class="col-sm-10 col-md-6 col-lg-4">
@@ -292,6 +294,13 @@
                 
             @endforeach
         </div>
+
+        @endif
+
+
+
+
+
     </div>
 </section>
       
@@ -319,6 +328,8 @@
 
 
     <!--============= Watches Auction Section Starts Here =============-->
+    @if (Auth::check()&& Auth::user()->user_type==1)
+    @else
     <section class="watches-auction-section padding-bottom padding-top">
         <div class="container">
             <div class="row justify-content-center mb-30-none">
@@ -362,6 +373,7 @@
             </div>
         </div>
     </section>
+    @endif
     <!--============= Watches Auction Section Ends Here =============-->
 
     <!--============= Art Auction Section Starts Here =============-->
