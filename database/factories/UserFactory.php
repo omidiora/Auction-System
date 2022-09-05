@@ -20,13 +20,13 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'matric_no' => "CSC/2018/00" . $this->faker->randomDigitNot(5),
+            'matric_no' => "CSC/2018/00".$this->faker->randomDigitNot(5),
             "department" => "Computer Science",
             "mobile" => $this->faker->phoneNumber,
             "delivery_address" => $this->faker->streetAddress,
-            "bank_name"=>"UBA",
-            "bank_no"=>"12232323232",
-            "user_type"=>"2"
+            "bank_name" => "UBA",
+            "bank_no" => "12232323232",
+            "user_type" =>   $this->faker->randomElement([1, 2]),
         ];
     }
 
